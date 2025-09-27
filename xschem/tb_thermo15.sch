@@ -55,6 +55,4 @@ C {lab_pin.sym} 790 -220 0 1 {name=p15 sig_type=std_logic lab=a,b,c,d,e,f,g,h,i,
 C {thermo15.sym} 400 -260 0 0 {name=x1}
 C {lab_pin.sym} 250 -300 0 0 {name=p2 sig_type=std_logic lab=DATA[3:0]}
 C {lab_pin.sym} 550 -300 0 1 {name=p4 sig_type=std_logic lab=VPWR}
-C {lab_pin.sym} 550 -280 0 1 {name=p6 sig_type=std_logic lab=VPWR}
-C {lab_pin.sym} 550 -260 0 1 {name=p9 sig_type=std_logic lab=VGND}
 C {lab_pin.sym} 550 -240 0 1 {name=p11 sig_type=std_logic lab=VGND}
