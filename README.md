@@ -1,6 +1,13 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg)
 
-# Tiny Tapeout Analog Project Template
+# Analog VGA DAC (and related) experiments on Tiny Tapeout TTSKY25b
+
+Ideas:
+*   PMOS current sources for going 0-0.7V instead of pulldown
+*   Existing matrix DAC but squashed for overlaps, and with bigger Vbias
+*   Mix with other DACs -- transmission gates
+*   Row-level power (gnd) on/off
+
 
 - [Read the documentation for project](docs/info.md)
 
