@@ -40,10 +40,10 @@ vbias
 \\"out mA;i(viout) 1000 *\\"
 xvout_pex
 xvbias_pex"
-y1=0.0018
-y2=3.3
-x1=0
-x2=1.1e-05
+y1=1.1233682
+y2=1.4066814
+x1=8.8768864e-06
+x2=9.1245844e-06
 dataset=-1}
 T {TTSKY25b} 50 -1090 0 0 1 1 {}
 N 410 -1010 410 -990 {lab=#net1}
@@ -128,7 +128,7 @@ Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
 				tran 1n 11u
-				write tb_csdac255_all_kickback.raw
+				write tb_csdac255_all_kickback_vb2p5xx4.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset

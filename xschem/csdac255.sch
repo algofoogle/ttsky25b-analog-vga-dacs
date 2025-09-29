@@ -41,7 +41,7 @@ C {lab_pin.sym} 1120 -360 0 1 {name=p25 sig_type=std_logic lab=VGND}
 C {opin.sym} 880 -150 0 0 {name=p26 lab=Vbias}
 C {lab_pin.sym} 820 -420 0 1 {name=p10 sig_type=std_logic lab=THERMO_ROWn[14:0]}
 C {lab_pin.sym} 840 -240 0 1 {name=p27 sig_type=std_logic lab=THERMO_COLn[14:0]}
-C {vbias6x.sym} 320 -170 0 0 {name=XVB}
+C {vbias2p5x.sym} 320 -170 0 0 {name=XVB[3:0]}
 C {lab_pin.sym} 420 -190 0 1 {name=p2 sig_type=std_logic lab=VbPWR}
 C {lab_pin.sym} 420 -170 0 1 {name=p4 sig_type=std_logic lab=VGND}
 C {iopin.sym} 310 -250 0 1 {name=p6 lab=VbPWR}

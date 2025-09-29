@@ -32,28 +32,32 @@ rainbow=0
 
 
 
-y1=-0.011
+y1=-0.012
 y2=1.3
 x1=0
 x2=1e-05
 dataset=-1
-color="7 4 10 7 4 10"
+color="7 4 10 6 7 4 10 12"
 node="vbias1x
 vbias2p5x
 vbias6x
+vbiasSF
 \\"i(vpwr1) -1000 *\\"
 \\"i(vpwr2) -1000 *\\"
-\\"i(vpwr3) -1000 *\\""}
+\\"i(vpwr3) -1000 *\\"
+\\"i(vpwr4) -1000 *\\""}
 N 510 -100 510 -80 {lab=Vbias1x}
 N 480 -100 510 -100 {lab=Vbias1x}
 N 860 -100 860 -80 {lab=Vbias2p5x}
 N 830 -100 860 -100 {lab=Vbias2p5x}
 N 1210 -100 1210 -80 {lab=Vbias6x}
 N 1180 -100 1210 -100 {lab=Vbias6x}
-C {devices/vsource.sym} 170 -20 0 0 {name=Vpwr1 value="1.8" savecurrent=false}
-C {devices/gnd.sym} 60 10 0 0 {name=l2 lab=GND}
-C {lab_pin.sym} 170 -50 0 0 {name=p1 sig_type=std_logic lab=VPWR1}
-C {devices/simulator_commands.sym} 1400 -120 0 1 {name=COMMANDS2
+N 1570 -100 1570 -80 {lab=VbiasSF}
+N 1540 -100 1570 -100 {lab=VbiasSF}
+C {devices/vsource.sym} 170 50 0 0 {name=Vpwr1 value="1.8" savecurrent=false}
+C {devices/gnd.sym} 60 80 0 0 {name=l2 lab=GND}
+C {lab_pin.sym} 170 20 0 0 {name=p1 sig_type=std_logic lab=VPWR1}
+C {devices/simulator_commands.sym} 1640 -490 0 1 {name=COMMANDS2
 simulator=ngspice
 only_toplevel=false 
 value="
@@ -70,7 +74,7 @@ Vxp2 bias[2]  GND pulse 1.8v 0v 0n 1n 1n 1590n 3200n
 
 .endc
 "}
-C {devices/code.sym} 1400 -120 0 0 {name=TT_MODELS
+C {devices/code.sym} 1520 -330 0 0 {name=TT_MODELS
 only_toplevel=true
 format="tcleval( @value )"
 value="
@@ -78,9 +82,9 @@ value="
 .include $::SKYWATER_STDCELLS/sky130_fd_sc_hd.spice
 "
 spice_ignore=false}
-C {lab_pin.sym} 60 -50 0 0 {name=p7 sig_type=std_logic lab=VGND}
-C {devices/vsource.sym} 60 -20 0 0 {name=Vvgnd value="0" savecurrent=false}
-C {lab_pin.sym} 170 10 0 0 {name=p10 sig_type=std_logic lab=VGND}
+C {lab_pin.sym} 60 20 0 0 {name=p7 sig_type=std_logic lab=VGND}
+C {devices/vsource.sym} 60 50 0 0 {name=Vvgnd value="0" savecurrent=false}
+C {lab_pin.sym} 170 80 0 0 {name=p10 sig_type=std_logic lab=VGND}
 C {lab_pin.sym} 280 -140 0 0 {name=p2 sig_type=std_logic lab=bias[2:0]}
 C {vbias.sym} 380 -120 0 0 {name=x1}
 C {lab_pin.sym} 480 -140 0 1 {name=p3 sig_type=std_logic lab=VPWR1}
@@ -97,7 +101,7 @@ descr="load waves"
 tclcommand="xschem raw_read $netlist_dir/tb_vbias.raw tran"
 }
 C {lab_pin.sym} 630 -140 0 0 {name=p8 sig_type=std_logic lab=bias[2:0]}
-C {vbias2p5x.sym} 730 -120 0 0 {name=XVB2p5[3:0]}
+C {vbias085.sym} 730 -120 0 0 {name=XVB2p5[7:0]}
 C {lab_pin.sym} 830 -140 0 1 {name=p9 sig_type=std_logic lab=VPWR2}
 C {lab_pin.sym} 830 -120 0 1 {name=p11 sig_type=std_logic lab=VGND}
 C {res.sym} 860 -50 0 0 {name=R2
@@ -118,9 +122,23 @@ device=resistor
 m=1}
 C {lab_pin.sym} 1210 -20 0 1 {name=p17 sig_type=std_logic lab=VGND}
 C {lab_pin.sym} 1210 -100 0 1 {name=p18 sig_type=std_logic lab=Vbias6x}
-C {devices/vsource.sym} 290 -20 0 0 {name=Vpwr2 value="1.8" savecurrent=false}
-C {lab_pin.sym} 290 -50 0 0 {name=p19 sig_type=std_logic lab=VPWR2}
-C {lab_pin.sym} 290 10 0 0 {name=p20 sig_type=std_logic lab=VGND}
-C {devices/vsource.sym} 410 -20 0 0 {name=Vpwr3 value="1.8" savecurrent=false}
-C {lab_pin.sym} 410 -50 0 0 {name=p21 sig_type=std_logic lab=VPWR3}
-C {lab_pin.sym} 410 10 0 0 {name=p22 sig_type=std_logic lab=VGND}
+C {devices/vsource.sym} 290 50 0 0 {name=Vpwr2 value="1.8" savecurrent=false}
+C {lab_pin.sym} 290 20 0 0 {name=p19 sig_type=std_logic lab=VPWR2}
+C {lab_pin.sym} 290 80 0 0 {name=p20 sig_type=std_logic lab=VGND}
+C {devices/vsource.sym} 410 50 0 0 {name=Vpwr3 value="1.8" savecurrent=false}
+C {lab_pin.sym} 410 20 0 0 {name=p21 sig_type=std_logic lab=VPWR3}
+C {lab_pin.sym} 410 80 0 0 {name=p22 sig_type=std_logic lab=VGND}
+C {lab_pin.sym} 1340 -140 0 0 {name=p23 sig_type=std_logic lab=bias[2:0]}
+C {vbiasPFET.sym} 1440 -120 0 0 {name=x2}
+C {lab_pin.sym} 1540 -140 0 1 {name=p24 sig_type=std_logic lab=VPWR4}
+C {lab_pin.sym} 1540 -120 0 1 {name=p25 sig_type=std_logic lab=VGND}
+C {res.sym} 1570 -50 0 0 {name=R4
+value=200Meg
+footprint=1206
+device=resistor
+m=1}
+C {lab_pin.sym} 1570 -20 0 1 {name=p26 sig_type=std_logic lab=VGND}
+C {lab_pin.sym} 1570 -100 0 1 {name=p27 sig_type=std_logic lab=VbiasSF}
+C {devices/vsource.sym} 530 50 0 0 {name=Vpwr4 value="1.8" savecurrent=false}
+C {lab_pin.sym} 530 20 0 0 {name=p28 sig_type=std_logic lab=VPWR4}
+C {lab_pin.sym} 530 80 0 0 {name=p29 sig_type=std_logic lab=VGND}

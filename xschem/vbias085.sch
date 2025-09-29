@@ -66,7 +66,7 @@ C {iopin.sym} 490 -590 0 1 {name=p5 lab=VGND}
 C {devices/lab_pin.sym} 310 -540 0 0 {name=p2 sig_type=std_logic lab=VPWR}
 C {devices/lab_pin.sym} 90 -500 0 0 {name=p21 sig_type=std_logic lab=bias[2]}
 C {sky130_fd_pr/pfet3_01v8.sym} 290 -500 0 0 {name=M1
-W=0.65
+W=0.85
 L=0.5
 body=VPWR
 nf=1
@@ -83,7 +83,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 250 -460 0 0 {name=p40 sig_type=std_logic lab=VPWR}
 C {devices/lab_pin.sym} 90 -420 0 0 {name=p46 sig_type=std_logic lab=bias[1]}
 C {sky130_fd_pr/pfet3_01v8.sym} 230 -420 0 0 {name=M2
-W=0.65
+W=0.85
 L=1
 body=VPWR
 nf=1
@@ -100,7 +100,7 @@ spiceprefix=X
 C {devices/lab_pin.sym} 190 -380 0 0 {name=p47 sig_type=std_logic lab=VPWR}
 C {devices/lab_pin.sym} 90 -340 0 0 {name=p48 sig_type=std_logic lab=bias[0]}
 C {sky130_fd_pr/pfet3_01v8.sym} 170 -340 0 0 {name=M3
-W=0.65
+W=0.85
 L=2
 body=VPWR
 nf=1
@@ -118,7 +118,7 @@ C {lab_pin.sym} 130 -40 0 0 {name=p6 sig_type=std_logic lab=VGND}
 C {ipin.sym} 490 -550 0 0 {name=p7 lab=bias[2:0]}
 C {opin.sym} 420 -110 0 0 {name=p26 lab=Vbias}
 C {sky130_fd_pr/nfet_g5v0d10v5.sym} 150 -110 0 1 {name=Mmirror
-W=2.1
+W=2.6
 L=0.5
 nf=1
 mult=1
@@ -133,7 +133,7 @@ spiceprefix=X
 }
 C {devices/lab_pin.sym} 130 -300 0 0 {name=p4 sig_type=std_logic lab=VPWR}
 C {sky130_fd_pr/pfet3_01v8.sym} 110 -260 0 0 {name=M4
-W=0.65
+W=0.85
 L=2
 body=VPWR
 nf=1
