@@ -37,11 +37,11 @@ node="vout
 \\"vb; vbias\\"
 \\"out mA;i(viout) 1000 *\\"
 \\"i(vbpwrmon) 1000 *\\""
-y1=0.0023
-y2=3.3
-x1=0
+y1=1.1046425
+y2=1.9147533
+x1=7.6275339e-06
 dataset=-1
-x2=1.1e-05}
+x2=7.8558124e-06}
 T {No kickback} -130 50 0 0 0.2 0.2 {}
 T {TTSKY25a model} 20 50 0 0 0.2 0.2 {}
 T {0.85W, 3-of} 580 50 0 0 0.2 0.2 {}
@@ -76,4 +76,12 @@ tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vbias6x.raw tr
 C {devices/launcher.sym} 450 80 0 0 {name=h7
 descr="vb2p5x x4" 
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vb2p5xx4.raw tran"
+}
+C {devices/launcher.sym} 1180 80 0 0 {name=h8
+descr="vb085 x4 R+500R" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vb085_x4_500R.raw tran"
+}
+C {devices/launcher.sym} 1420 80 0 0 {name=h9
+descr="RC500R" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vb085_x4_RC500R.raw tran"
 }

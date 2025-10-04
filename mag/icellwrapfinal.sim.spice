@@ -1,0 +1,91 @@
+* NGSPICE file created from icellwrapfinal_parax.ext - technology: sky130A
+
+.subckt icellwrapfinal_parax VPWR VGND Iout Vbias Sn Rn
+X0 icell.PDM Sn.t0 icell.Ien VGND.t4 sky130_fd_pr__nfet_01v8 ad=0.0725 pd=0.79 as=0.2304 ps=2.18 w=0.5 l=0.15
+X1 icell.SM icell.Ien Iout.t0 VGND.t5 sky130_fd_pr__nfet_g5v0d10v5 ad=0.0625 pd=0.75 as=0.175 ps=1.7 w=0.5 l=0.5
+X2 VPWR.t6 VPWR.t4 icell.PUM VPWR.t5 sky130_fd_pr__pfet_01v8 ad=0.135 pd=1.54 as=0.0675 ps=0.77 w=0.5 l=0.15
+X3 icell.Ien Sn.t1 VPWR.t1 VPWR.t0 sky130_fd_pr__pfet_01v8 ad=0.0725 pd=0.79 as=0.15 ps=1.6 w=0.5 l=0.15
+X4 VGND.t3 VPWR.t7 icell.PDM VGND.t2 sky130_fd_pr__nfet_01v8 ad=0.0725 pd=0.79 as=0.0725 ps=0.79 w=0.5 l=0.15
+X5 icell.PDM VPWR.t8 VGND.t1 VGND.t0 sky130_fd_pr__nfet_01v8 ad=0.1312 pd=1.54 as=0.0725 ps=0.79 w=0.5 l=0.15
+X6 VGND.t7 Vbias.t0 icell.SM VGND.t6 sky130_fd_pr__nfet_g5v0d10v5 ad=0.175 pd=1.7 as=0.0625 ps=0.75 w=0.5 l=0.5
+X7 icell.PUM VPWR.t2 icell.Ien VPWR.t3 sky130_fd_pr__pfet_01v8 ad=0.0675 pd=0.77 as=0.0725 ps=0.79 w=0.5 l=0.15
+R0 Sn Sn.n0 161.363
+R1 Sn.n0 Sn.t1 161.106
+R2 Sn.n0 Sn.t0 145.038
+R3 VGND.n2 VGND.t5 2033.56
+R4 VGND.t4 VGND.t2 630.62
+R5 VGND.t6 VGND.t0 408.469
+R6 VGND.n1 VGND.t7 241.393
+R7 VGND.t2 VGND.t6 222.15
+R8 VGND.t5 VGND.t4 222.15
+R9 VGND.n1 VGND.n0 194.391
+R10 VGND.n0 VGND.t1 34.8005
+R11 VGND.n0 VGND.t3 34.8005
+R12 VGND.n2 VGND 7.98901
+R13 VGND VGND.n1 0.037734
+R14 VGND VGND.n2 0.00980851
+R15 Iout.n0 Iout.t0 239.927
+R16 Iout.n0 Iout 8.20246
+R17 Iout Iout.n0 0.03925
+R18 VPWR.n5 VPWR.t0 1005.7
+R19 VPWR.n4 VPWR.t1 646.071
+R20 VPWR.n3 VPWR.t6 642.13
+R21 VPWR.t0 VPWR.t3 486.048
+R22 VPWR.t3 VPWR.t5 463.954
+R23 VPWR.n8 VPWR.n0 161.365
+R24 VPWR.n0 VPWR.t2 161.202
+R25 VPWR.n1 VPWR.t4 159.978
+R26 VPWR.n2 VPWR.n1 152
+R27 VPWR.n0 VPWR.t7 145.137
+R28 VPWR.n1 VPWR.t8 143.911
+R29 VPWR.n4 VPWR.n3 91.8492
+R30 VPWR.n3 VPWR.n2 34.7473
+R31 VPWR.n2 VPWR 9.37021
+R32 VPWR.n6 VPWR.n5 9.33404
+R33 VPWR.n7 VPWR.n6 8.01824
+R34 VPWR.n8 VPWR.n7 7.98401
+R35 VPWR.n5 VPWR.n4 6.04494
+R36 VPWR.n7 VPWR 0.0945
+R37 VPWR.n9 VPWR.n8 0.0599512
+R38 VPWR.n9 VPWR 0.0469286
+R39 VPWR VPWR.n9 0.0401341
+R40 VPWR.n6 VPWR 0.0233659
+R41 Vbias.n0 Vbias.t0 119.308
+R42 Vbias.n0 Vbias 8.00727
+R43 Vbias Vbias.n0 0.0489375
+C0 icell.Ien VPWR 0.17734f
+C1 Sn Iout 0.00586f
+C2 Rn Vbias 0.01594f
+C3 Sn Vbias 0.02634f
+C4 icell.PDM Rn 0.00156f
+C5 icell.PDM Sn 0.00341f
+C6 icell.Ien Iout 0.06382f
+C7 Iout VPWR 0.16199f
+C8 icell.Ien Vbias 0.17743f
+C9 Vbias VPWR 0.60071f
+C10 icell.PUM Rn 0.00186f
+C11 icell.PDM icell.Ien 0.04854f
+C12 icell.PDM VPWR 0.06544f
+C13 icell.Ien icell.SM 0.0039f
+C14 Iout Vbias 0.32247f
+C15 icell.PUM VPWR 0.01478f
+C16 icell.PDM Vbias 0.04347f
+C17 icell.SM Iout 0.00367f
+C18 icell.SM Vbias 0.00675f
+C19 icell.PDM icell.SM 0.00168f
+C20 Rn Sn 0.0013f
+C21 icell.Ien Rn 0.00111f
+C22 Rn VPWR 0.18262f
+C23 icell.Ien Sn 0.13564f
+C24 Sn VPWR 0.30929f
+C25 Rn VGND 0.11984f
+C26 Iout VGND 1.02622f
+C27 Sn VGND 0.3418f
+C28 Vbias VGND 0.9332f
+C29 VPWR VGND 1.38839f
+C30 icell.SM VGND 0.00474f
+C31 icell.Ien VGND 0.47603f
+C32 icell.PUM VGND 0.00282f
+C33 icell.PDM VGND 0.20789f
+.ends
+

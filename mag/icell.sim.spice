@@ -1,0 +1,64 @@
+* NGSPICE file created from icell_parax.ext - technology: sky130A
+
+.subckt icell_parax Vbias VGND Iout Cn VPWR Sn Rn
+X0 PDM Sn.t0 Ien VGND.t0 sky130_fd_pr__nfet_01v8 ad=0.0725 pd=0.79 as=0.2304 ps=2.18 w=0.5 l=0.15
+X1 SM Ien Iout.t0 VGND.t1 sky130_fd_pr__nfet_g5v0d10v5 ad=0.0625 pd=0.75 as=0.175 ps=1.7 w=0.5 l=0.5
+X2 VPWR.t3 Rn.t0 PUM VPWR.t2 sky130_fd_pr__pfet_01v8 ad=0.135 pd=1.54 as=0.0675 ps=0.77 w=0.5 l=0.15
+X3 Ien Sn.t1 VPWR.t1 VPWR.t0 sky130_fd_pr__pfet_01v8 ad=0.0725 pd=0.79 as=0.15 ps=1.6 w=0.5 l=0.15
+X4 VGND.t5 Cn.t0 PDM VGND.t4 sky130_fd_pr__nfet_01v8 ad=0.0725 pd=0.79 as=0.0725 ps=0.79 w=0.5 l=0.15
+X5 PDM Rn.t1 VGND.t3 VGND.t2 sky130_fd_pr__nfet_01v8 ad=0.1312 pd=1.54 as=0.0725 ps=0.79 w=0.5 l=0.15
+X6 VGND.t7 Vbias.t0 SM VGND.t6 sky130_fd_pr__nfet_g5v0d10v5 ad=0.175 pd=1.7 as=0.0625 ps=0.75 w=0.5 l=0.5
+X7 PUM Cn.t1 Ien VPWR.t4 sky130_fd_pr__pfet_01v8 ad=0.0675 pd=0.77 as=0.0725 ps=0.79 w=0.5 l=0.15
+R0 Sn Sn.n0 161.363
+R1 Sn.n0 Sn.t1 161.106
+R2 Sn.n0 Sn.t0 145.038
+R3 VGND VGND.t1 2033.66
+R4 VGND.t0 VGND.t4 630.62
+R5 VGND.t6 VGND.t2 408.469
+R6 VGND.n1 VGND.t7 241.452
+R7 VGND.t4 VGND.t6 222.15
+R8 VGND.t1 VGND.t0 222.15
+R9 VGND.n1 VGND.n0 194.391
+R10 VGND.n0 VGND.t3 34.8005
+R11 VGND.n0 VGND.t5 34.8005
+R12 VGND VGND.n1 0.0465526
+R13 Iout Iout.t0 239.965
+R14 Rn Rn.n0 161.37
+R15 Rn.n0 Rn.t0 159.978
+R16 Rn.n0 Rn.t1 143.911
+R17 VPWR.n1 VPWR.t0 1005.7
+R18 VPWR.n0 VPWR.t3 738.074
+R19 VPWR.n0 VPWR.t1 646.071
+R20 VPWR.t0 VPWR.t4 486.048
+R21 VPWR.t4 VPWR.t2 463.954
+R22 VPWR VPWR.n1 9.36657
+R23 VPWR.n1 VPWR.n0 6.04494
+R24 Cn Cn.n0 161.492
+R25 Cn.n0 Cn.t1 161.202
+R26 Cn.n0 Cn.t0 145.137
+R27 Vbias Vbias.t0 119.356
+C0 Rn Cn 0.09717f
+C1 VPWR Rn 0.06314f
+C2 Ien Sn 0.10475f
+C3 Sn Cn 0.09337f
+C4 VPWR Sn 0.04757f
+C5 Iout Ien 0.0545f
+C6 Ien PDM 0.04854f
+C7 Cn PDM 0.02386f
+C8 Ien Cn 0.02092f
+C9 VPWR Ien 0.11214f
+C10 Vbias PDM 0.03893f
+C11 VPWR Cn 0.06162f
+C12 Ien Vbias 0.1525f
+C13 Rn PDM 0.0346f
+C14 Vbias Cn 0.01141f
+C15 Iout VGND 0.12556f
+C16 Sn VGND 0.16619f
+C17 Vbias VGND 0.43204f
+C18 Cn VGND 0.16505f
+C19 Rn VGND 0.18628f
+C20 VPWR VGND 0.40917f
+C21 Ien VGND 0.46988f
+C22 PDM VGND 0.19771f
+.ends
+

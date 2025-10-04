@@ -32,18 +32,20 @@ rainbow=0
 
 
 
-color="7 10 12 7 7 4 10"
+color="12 10 12 7 7 4 10 17 21"
 node="vout
 vbias
 \\"i(vbpwrmon) 1000 *\\"
 \\"nom mA;i(xvvccnom) 1000 *\\"
 \\"out mA;i(viout) 1000 *\\"
 xvout_pex
-xvbias_pex"
-y1=1.1233682
-y2=1.4066814
-x1=8.8768864e-06
-x2=9.1245844e-06
+xvbias_pex
+vbiash
+vbiasl"
+y1=0.00014
+y2=3.3
+x1=0
+x2=1.1e-05
 dataset=-1}
 T {TTSKY25b} 50 -1090 0 0 1 1 {}
 N 410 -1010 410 -990 {lab=#net1}
@@ -61,7 +63,7 @@ C {devices/gnd.sym} 840 -1040 0 0 {name=l2 lab=GND}
 C {lab_pin.sym} 960 -1100 0 0 {name=p1 sig_type=std_logic lab=VPWR}
 C {devices/vsource.sym} 1080 -1070 0 0 {name=Vvpu value="3.3" savecurrent=false}
 C {lab_pin.sym} 1080 -1100 0 0 {name=p5 sig_type=std_logic lab=VAPWR}
-C {devices/simulator_commands.sym} 500 -1090 0 0 {name=COMMANDS2
+C {devices/simulator_commands.sym} 500 -1080 0 0 {name=COMMANDS2
 simulator=ngspice
 only_toplevel=false 
 value="
@@ -113,7 +115,7 @@ Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
 				save
 				+ data[0] data[1] data[2] data[3] data[4] data[5] data[6] data[7]
 				+ bias[0] bias[1] bias[2]
-				+ vbias          vbias_pex
+				+ vbias vbiash vbiasl         vbias_pex
 				+ vout i(viout)  vout_pex i(viout_pex)
 				+ i(vvcc)
 				+ i(vvpu)
@@ -128,7 +130,7 @@ Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
 				tran 1n 11u
-				write tb_csdac255_all_kickback_vb2p5xx4.raw
+				write tb_csdac255_all_kickback_vb085_x4_RC500R.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -173,9 +175,9 @@ C {devices/gnd.sym} 370 -850 0 0 {name=l5 lab=VGND}
 C {devices/lab_pin.sym} 90 -600 0 0 {name=p20 sig_type=std_logic lab=bias[2:0]}
 C {devices/gnd.sym} 1080 -1040 0 0 {name=l1 lab=VGND}
 C {devices/gnd.sym} 960 -1040 0 0 {name=l3 lab=VGND}
-C {devices/launcher.sym} 540 -30 0 0 {name=h2
+C {devices/launcher.sym} 540 -40 0 0 {name=h2
 descr="load waves" 
-tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback.raw tran"
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vb085_x4_RC500R.raw tran"
 }
 C {res.sym} 120 -600 1 0 {name=Rbias[2:0]
 value=10k
@@ -209,10 +211,10 @@ device=resistor
 m=1}
 C {lab_pin.sym} 390 -360 0 1 {name=p10 sig_type=std_logic lab=VNearGND}
 C {lab_pin.sym} 390 -480 0 1 {name=p16 sig_type=std_logic lab=Vbias}
-C {res.sym} 300 -240 0 0 {name=R4
+C {res.sym} 240 -430 0 0 {name=R4
 value=10m
 footprint=1206
 device=resistor
 m=1}
-C {lab_pin.sym} 300 -270 0 1 {name=p17 sig_type=std_logic lab=VNearGND}
-C {lab_pin.sym} 300 -210 0 1 {name=p18 sig_type=std_logic lab=VGND}
+C {lab_pin.sym} 240 -460 0 1 {name=p17 sig_type=std_logic lab=VNearGND}
+C {lab_pin.sym} 240 -400 0 1 {name=p18 sig_type=std_logic lab=VGND}
