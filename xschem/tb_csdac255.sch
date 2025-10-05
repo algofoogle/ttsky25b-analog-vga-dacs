@@ -43,10 +43,10 @@ xvbias_pex
 vbiash
 vbiasl
 -xdac.vbias_in"
-y1=1.174476
-y2=1.2855685
-x1=5.6016126e-07
-x2=7.462932e-07
+y1=1.19
+y2=1.28
+x1=5.6e-07
+x2=7.4e-07
 dataset=0}
 T {TTSKY25b} 50 -1090 0 0 1 1 {}
 N 410 -1010 410 -990 {lab=#net1}
