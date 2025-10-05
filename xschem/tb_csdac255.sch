@@ -32,7 +32,7 @@ rainbow=0
 
 
 
-color="12 10 12 7 7 4 10 17 21 4"
+color="4 10 12 7 7 4 10 17 21 4"
 node="vout
 vbias
 \\"i(vbpwrmon) 1000 *\\"
@@ -43,10 +43,10 @@ xvbias_pex
 vbiash
 vbiasl
 -xdac.vbias_in"
-y1=1.19
-y2=1.28
-x1=5.6e-07
-x2=7.4e-07
+y1=0
+y2=3.3
+x1=0
+x2=1.1e-05
 dataset=0}
 T {TTSKY25b} 50 -1090 0 0 1 1 {}
 N 410 -1010 410 -990 {lab=#net1}
@@ -190,7 +190,7 @@ C {devices/vsource.sym} 260 -720 0 0 {name=VbPWRmon value="0" savecurrent=false}
 C {lab_pin.sym} 260 -750 0 0 {name=p23 sig_type=std_logic lab=VPWR}
 C {capa.sym} 70 -430 0 0 {name=C2
 m=1
-value=83f
+value=100.83f
 footprint=1206
 device="ceramic capacitor"}
 C {lab_pin.sym} 370 -800 0 1 {name=p3 sig_type=std_logic lab=Iout}
@@ -224,7 +224,7 @@ tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vb085_x4_ThC7p
 }
 C {capa.sym} 190 -310 0 0 {name=C4
 m=1
-value=216f
+value=600.216f
 footprint=1206
 device="ceramic capacitor"}
 C {lab_pin.sym} 190 -280 0 1 {name=p19 sig_type=std_logic lab=Vbias}

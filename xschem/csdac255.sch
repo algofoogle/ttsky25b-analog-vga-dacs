@@ -58,7 +58,7 @@ C {vbias.sym} 120 -170 0 0 {name=XVB}
 C {lab_pin.sym} 560 -560 2 1 {name=p19 sig_type=std_logic lab=Vbias}
 C {opin.sym} 220 -150 0 0 {name=p22 lab=Vbias}
 C {res.sym} 610 -560 1 0 {name=R1
-value=1k
+value=10
 footprint=1206
 device=resistor
 m=1}
