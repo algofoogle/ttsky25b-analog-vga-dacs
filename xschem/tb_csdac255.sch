@@ -32,17 +32,11 @@ rainbow=0
 
 
 
-color="4 10 12 7 7 4 10 17 21 4"
+color="4 10 12 7"
 node="vout
 vbias
-\\"i(vbpwrmon) 1000 *\\"
-\\"nom mA;i(xvvccnom) 1000 *\\"
-\\"out mA;i(viout) 1000 *\\"
-xvout_pex
-xvbias_pex
-vbiash
-vbiasl
--xdac.vbias_in"
+\\"Vbias src ma;i(vbpwrmon) 1000 *\\"
+\\"out mA;i(viout) 1000 *\\""
 y1=0
 y2=3.3
 x1=0
@@ -132,7 +126,7 @@ Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
 				tran 1n 11u
-				write tb_csdac255_all_kickback_vb085_x4_ThC7p5f1000R.raw
+				write tb_csdac255_all_vbias_fakepex.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -219,8 +213,8 @@ descr="vb085_x4_ThC1R"
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vb085_x4_ThR0p001f_ThC1R.raw tran"
 }
 C {devices/launcher.sym} 1300 -40 0 0 {name=h3
-descr="ThC7p5f1000R" 
-tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vb085_x4_ThC7p5f1000R.raw tran"
+descr="vbias+fakepex" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_vbias_fakepex.raw tran"
 }
 C {capa.sym} 190 -310 0 0 {name=C4
 m=1
