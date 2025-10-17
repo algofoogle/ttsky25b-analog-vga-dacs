@@ -1,0 +1,138 @@
+** sch_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/tb_vbias.sch
+**.subckt tb_vbias
+Vpwr1 VPWR1 VGND 1.8
+Vvgnd VGND GND 0
+x1 VPWR1 VGND bias[2] bias[1] bias[0] Vbias1x vbias
+R1 Vbias1x VGND 200Meg m=1
+XVB2p5[7] VPWR2 VGND bias[2] bias[1] bias[0] Vbias2p5x vbias085
+XVB2p5[6] VPWR2 VGND bias[2] bias[1] bias[0] Vbias2p5x vbias085
+XVB2p5[5] VPWR2 VGND bias[2] bias[1] bias[0] Vbias2p5x vbias085
+XVB2p5[4] VPWR2 VGND bias[2] bias[1] bias[0] Vbias2p5x vbias085
+XVB2p5[3] VPWR2 VGND bias[2] bias[1] bias[0] Vbias2p5x vbias085
+XVB2p5[2] VPWR2 VGND bias[2] bias[1] bias[0] Vbias2p5x vbias085
+XVB2p5[1] VPWR2 VGND bias[2] bias[1] bias[0] Vbias2p5x vbias085
+XVB2p5[0] VPWR2 VGND bias[2] bias[1] bias[0] Vbias2p5x vbias085
+R2 Vbias2p5x VGND 200Meg m=1
+x3 VPWR3 VGND bias[2] bias[1] bias[0] Vbias6x vbias6x
+R3 Vbias6x VGND 200Meg m=1
+Vpwr2 VPWR2 VGND 1.8
+Vpwr3 VPWR3 VGND 1.8
+x2 VPWR4 VGND bias[2] bias[1] bias[0] VbiasSF vbiasPFET
+R4 VbiasSF VGND 200Meg m=1
+Vpwr4 VPWR4 VGND 1.8
+**** begin user architecture code
+
+
+
+Vxp0 bias[0]  GND pulse 1.8v 0v 0n 1n 1n 390n 800n
+Vxp1 bias[1]  GND pulse 1.8v 0v 0n 1n 1n 790n 1600n
+Vxp2 bias[2]  GND pulse 1.8v 0v 0n 1n 1n 1590n 3200n
+
+*.options savecurrents
+.control
+
+    save all
+    tran 1n 10u
+    write tb_vbias.raw
+
+.endc
+
+
+
+.lib /home/anton/asic/ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include /home/anton/asic/ciel/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  vbias.sym # of pins=4
+** sym_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/vbias.sym
+** sch_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/vbias.sch
+.subckt vbias VPWR VGND bias[2] bias[1] bias[0] Vbias
+*.iopin VPWR
+*.iopin VGND
+*.ipin bias[2],bias[1],bias[0]
+*.opin Vbias
+XM1 Vbias bias[2] VPWR VPWR sky130_fd_pr__pfet_01v8 L=1 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Vbias bias[1] VPWR VPWR sky130_fd_pr__pfet_01v8 L=2 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Vbias bias[0] VPWR VPWR sky130_fd_pr__pfet_01v8 L=4 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XMmirror Vbias Vbias VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=1 W=2.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 Vbias VGND VPWR VPWR sky130_fd_pr__pfet_01v8 L=4 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  vbias085.sym # of pins=4
+** sym_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/vbias085.sym
+** sch_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/vbias085.sch
+.subckt vbias085 VPWR VGND bias[2] bias[1] bias[0] Vbias
+*.iopin VPWR
+*.iopin VGND
+*.ipin bias[2],bias[1],bias[0]
+*.opin Vbias
+XM1 Vbias bias[2] VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.5 W=0.85 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Vbias bias[1] VPWR VPWR sky130_fd_pr__pfet_01v8 L=1 W=0.85 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Vbias bias[0] VPWR VPWR sky130_fd_pr__pfet_01v8 L=2 W=0.85 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XMmirror Vbias Vbias VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=2.6 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 Vbias VGND VPWR VPWR sky130_fd_pr__pfet_01v8 L=2 W=0.85 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  vbias6x.sym # of pins=4
+** sym_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/vbias6x.sym
+** sch_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/vbias6x.sch
+.subckt vbias6x VPWR VGND bias[2] bias[1] bias[0] Vbias
+*.iopin VPWR
+*.iopin VGND
+*.ipin bias[2],bias[1],bias[0]
+*.opin Vbias
+XM1 Vbias bias[2] VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.35 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 Vbias bias[1] VPWR VPWR sky130_fd_pr__pfet_01v8 L=0.7 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 Vbias bias[0] VPWR VPWR sky130_fd_pr__pfet_01v8 L=1.4 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XMmirror Vbias Vbias VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=0.5 W=7.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 Vbias VGND VPWR VPWR sky130_fd_pr__pfet_01v8 L=1.4 W=2 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  vbiasPFET.sym # of pins=4
+** sym_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/vbiasPFET.sym
+** sch_path: /home/anton/projects/ttsky25b-analog-vga-dacs/xschem/vbiasPFET.sch
+.subckt vbiasPFET VPWR VGND bias[2] bias[1] bias[0] Vbias
+*.iopin VPWR
+*.iopin VGND
+*.ipin bias[2],bias[1],bias[0]
+*.opin Vbias
+XM1 net1 bias[2] VPWR VPWR sky130_fd_pr__pfet_01v8 L=1 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net1 bias[1] VPWR VPWR sky130_fd_pr__pfet_01v8 L=2 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net1 bias[0] VPWR VPWR sky130_fd_pr__pfet_01v8 L=4 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net1 VGND VPWR VPWR sky130_fd_pr__pfet_01v8 L=4 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM6 net2 net2 VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=1 W=2.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XMmirror net1 net1 net2 VGND sky130_fd_pr__nfet_g5v0d10v5 L=1 W=2.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM5 Vbias Vbias VGND VGND sky130_fd_pr__nfet_g5v0d10v5 L=1 W=2.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XMmirror1 VPWR net1 Vbias VGND sky130_fd_pr__nfet_g5v0d10v5 L=1 W=2.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end

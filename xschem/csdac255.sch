@@ -45,16 +45,16 @@ C {lab_pin.sym} 220 -170 0 1 {name=p4 sig_type=std_logic lab=VGND}
 C {iopin.sym} 110 -250 0 1 {name=p6 lab=VbPWR}
 C {capa.sym} 700 -480 0 0 {name=CR[14:0]
 m=1
-value=3.75f
+value=1.4f
 footprint=1206
 device="ceramic capacitor"}
 C {capa.sym} 960 -230 0 0 {name=CC[14:0]
 m=1
-value=2.4f
+value=0.82f
 footprint=1206
 device="ceramic capacitor"}
 C {lab_pin.sym} 700 -510 0 1 {name=p9 sig_type=std_logic lab=Vbias_in}
-C {vbias.sym} 120 -170 0 0 {name=XVB}
+C {vbias085.sym} 120 -170 0 0 {name=XVB[3:0]}
 C {lab_pin.sym} 560 -560 2 1 {name=p19 sig_type=std_logic lab=Vbias}
 C {opin.sym} 220 -150 0 0 {name=p22 lab=Vbias}
 C {res.sym} 610 -560 1 0 {name=R1
@@ -65,3 +65,6 @@ m=1}
 C {lab_pin.sym} 660 -560 2 0 {name=p8 sig_type=std_logic lab=Vbias_in}
 C {lab_pin.sym} 960 -260 0 1 {name=p11 sig_type=std_logic lab=Vbias_in}
 C {lab_pin.sym} 880 -340 2 1 {name=p16 sig_type=std_logic lab=Vbias_in}
+C {lab_pin.sym} 550 -160 2 1 {name=p18 sig_type=std_logic lab=Vbias_in_FIXED}
+C {vsource.sym} 550 -130 0 0 {name=V1 value=1.21 savecurrent=false}
+C {lab_pin.sym} 550 -100 0 1 {name=p21 sig_type=std_logic lab=VGND}
