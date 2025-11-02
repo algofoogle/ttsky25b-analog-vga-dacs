@@ -44,7 +44,7 @@ x2=1.1e-05
 dataset=0}
 T {TTSKY25b} 50 -1090 0 0 1 1 {}
 N 410 -1010 410 -990 {lab=#net1}
-N 410 -1090 410 -1070 {lab=VAPWR}
+N 410 -1090 410 -1070 {lab=VPU}
 N 410 -930 410 -910 {lab=Vout}
 N 20 -910 110 -910 {lab=Iout}
 N 20 -910 20 -800 {lab=Iout}
@@ -53,6 +53,9 @@ N 150 -650 150 -600 {lab=#net2}
 N 20 -800 370 -800 {lab=Iout}
 N 370 -800 370 -670 {lab=Iout}
 N 290 -910 410 -910 {lab=Vout}
+N 60 -240 60 -220 {lab=#net3}
+N 60 -320 60 -300 {lab=Vbias_out}
+N 320 -430 440 -430 {lab=Vbias_out}
 C {devices/vsource.sym} 960 -1070 0 0 {name=Vvcc value="1.8" savecurrent=false}
 C {devices/gnd.sym} 840 -1040 0 0 {name=l2 lab=GND}
 C {lab_pin.sym} 960 -1100 0 0 {name=p1 sig_type=std_logic lab=VPWR}
@@ -113,7 +116,7 @@ Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
 				+ vbias vbiash vbiasl         vbias_pex
 				+ vout i(viout)  vout_pex i(viout_pex)
 				+ i(vvcc)
-				+ i(vvpu)
+				+ i(vvpu) i(vvpu18)
 				+ i(vvgnd)
 				+ i(vbpwrmon)
 				+ xdac.vbias_in
@@ -125,8 +128,8 @@ Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThC.Tn[0]" "XDAC_PEX.XThC.Tn[1]" "XDAC_PEX.XThC.Tn[2]" "XDAC_PEX.XThC.Tn[3]" "XDAC_PEX.XThC.Tn[4]" "XDAC_PEX.XThC.Tn[5]" "XDAC_PEX.XThC.Tn[6]" "XDAC_PEX.XThC.Tn[7]" "XDAC_PEX.XThC.Tn[8]" "XDAC_PEX.XThC.Tn[9]" "XDAC_PEX.XThC.Tn[10]" "XDAC_PEX.XThC.Tn[11]" "XDAC_PEX.XThC.Tn[12]" "XDAC_PEX.XThC.Tn[13]" "XDAC_PEX.XThC.Tn[14]"
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
-				tran 1n 11u UIC
-				write tb_csdac255_all_vbias_realpex_experiment04_pegVbias121.raw
+				tran 1n 11u
+				write tb_csdac255_all_vbias_realpex_experiment04_pegVbias121_pin200R_pu18.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -154,7 +157,6 @@ tclcommand="textwindow [file normalize ../mag--vbias-cap-tests--04-MetMoves/csda
 C {lab_pin.sym} 440 -910 0 1 {name=p2 sig_type=std_logic lab=Vout}
 C {lab_pin.sym} 150 -670 0 0 {name=p4 sig_type=std_logic lab=DATA[7:0]}
 C {lab_pin.sym} 370 -650 0 1 {name=p9 sig_type=std_logic lab=VPWR}
-C {lab_pin.sym} 370 -630 0 1 {name=p11 sig_type=std_logic lab=VNearGND}
 C {lab_pin.sym} 370 -610 0 1 {name=p12 sig_type=std_logic lab=Vbias}
 C {tt_pin_model.sym} 200 -890 0 0 {name=XTTPIN}
 C {lab_pin.sym} 110 -870 0 0 {name=p13 sig_type=std_logic lab=VAPWR}
@@ -165,7 +167,7 @@ footprint=1206
 device=resistor
 m=1}
 C {devices/vsource.sym} 410 -1040 0 0 {name=Viout value="0" savecurrent=false}
-C {lab_pin.sym} 410 -1090 0 1 {name=p15 sig_type=std_logic lab=VAPWR}
+C {lab_pin.sym} 410 -1090 0 1 {name=p15 sig_type=std_logic lab=VPU}
 C {devices/capa.sym} 370 -880 0 0 {name=C1
 m=1
 value=3p
@@ -186,28 +188,7 @@ device=resistor
 m=1}
 C {devices/vsource.sym} 260 -720 0 0 {name=VbPWRmon value="0" savecurrent=false}
 C {lab_pin.sym} 260 -750 0 0 {name=p23 sig_type=std_logic lab=VPWR}
-C {capa.sym} 70 -430 0 0 {name=C2
-m=1
-value=100.83f
-footprint=1206
-device="ceramic capacitor"}
 C {lab_pin.sym} 370 -800 0 1 {name=p3 sig_type=std_logic lab=Iout}
-C {lab_pin.sym} 70 -400 0 1 {name=p6 sig_type=std_logic lab=IoutZ}
-C {lab_pin.sym} 70 -460 0 1 {name=p8 sig_type=std_logic lab=VbiasZ}
-C {capa.sym} 300 -310 0 0 {name=C3
-m=1
-value=231f
-footprint=1206
-device="ceramic capacitor"}
-C {lab_pin.sym} 300 -280 0 1 {name=p10 sig_type=std_logic lab=VNearGNDZ}
-C {lab_pin.sym} 300 -340 0 1 {name=p16 sig_type=std_logic lab=VbiasZ}
-C {res.sym} 300 -190 0 0 {name=R4
-value=10m
-footprint=1206
-device=resistor
-m=1}
-C {lab_pin.sym} 300 -220 0 1 {name=p17 sig_type=std_logic lab=VNearGNDZ}
-C {lab_pin.sym} 300 -160 0 1 {name=p18 sig_type=std_logic lab=VGNDZ}
 C {devices/launcher.sym} 570 -40 0 0 {name=h5
 descr="vb085 x4" 
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_kickback_vb085_x4.raw tran"
@@ -220,28 +201,30 @@ C {devices/launcher.sym} 1300 -40 0 0 {name=h3
 descr="vbias+fakepex" 
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_vbias_fakepex_VbiasInFixed.raw tran"
 }
-C {capa.sym} 190 -310 0 0 {name=C4
-m=1
-value=600.216f
-footprint=1206
-device="ceramic capacitor"}
-C {lab_pin.sym} 190 -280 0 1 {name=p19 sig_type=std_logic lab=VbiasZ}
-C {lab_pin.sym} 190 -340 0 1 {name=p21 sig_type=std_logic lab=VPWRZ}
-C {capa.sym} 300 -430 0 0 {name=C5
-m=1
-value=320f
-footprint=1206
-device="ceramic capacitor"}
-C {lab_pin.sym} 300 -400 0 1 {name=p22 sig_type=std_logic lab=VNearGNDZ}
-C {lab_pin.sym} 300 -460 0 1 {name=p24 sig_type=std_logic lab=IoutZ}
-C {capa.sym} 190 -430 0 0 {name=C6
-m=1
-value=54f
-footprint=1206
-device="ceramic capacitor"}
-C {lab_pin.sym} 190 -400 0 1 {name=p25 sig_type=std_logic lab=IoutZ}
-C {lab_pin.sym} 190 -460 0 1 {name=p26 sig_type=std_logic lab=VPWRZ}
 C {devices/launcher.sym} 1530 -40 0 0 {name=h4
 descr="vbias+fakepex+NoHStraps" 
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_all_vbias_fakepex_NoHStraps.raw tran"
 }
+C {devices/vsource.sym} 60 -190 0 0 {name=VpegVbias121 value="1.21" savecurrent=false}
+C {lab_pin.sym} 60 -320 0 1 {name=p27 sig_type=std_logic lab=Vbias_out}
+C {res.sym} 60 -270 0 0 {name=R1
+value=200
+footprint=1206
+device=resistor
+m=1}
+C {lab_pin.sym} 60 -160 0 1 {name=p28 sig_type=std_logic lab=VGND}
+C {lab_pin.sym} 370 -630 0 1 {name=p6 sig_type=std_logic lab=VGND}
+C {tt_pin_model.sym} 230 -410 0 0 {name=XTTPIN1}
+C {lab_pin.sym} 140 -390 0 0 {name=p8 sig_type=std_logic lab=VAPWR}
+C {lab_pin.sym} 320 -390 0 1 {name=p10 sig_type=std_logic lab=VGND}
+C {devices/capa.sym} 400 -400 0 0 {name=C2
+m=1
+value=3p
+footprint=1206
+device="ceramic capacitor"}
+C {devices/gnd.sym} 400 -370 0 0 {name=l4 lab=VGND}
+C {lab_pin.sym} 140 -430 0 0 {name=p11 sig_type=std_logic lab=Vbias}
+C {lab_pin.sym} 440 -430 3 1 {name=p16 sig_type=std_logic lab=Vbias_out}
+C {devices/vsource.sym} 1200 -1070 0 0 {name=Vvpu18 value="3.3" savecurrent=false}
+C {lab_pin.sym} 1200 -1100 0 0 {name=p17 sig_type=std_logic lab=VPU}
+C {devices/gnd.sym} 1200 -1040 0 0 {name=l6 lab=VGND}
