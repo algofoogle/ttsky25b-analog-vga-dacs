@@ -36,7 +36,7 @@ N 740 -380 780 -380 {lab=VbiasH}
 N 780 -380 780 -330 {lab=VbiasH}
 N 780 -330 960 -330 {lab=VbiasH}
 N 780 -210 960 -210 {lab=VbiasL}
-N 740 -180 740 -150 {lab=#net2}
+N 740 -180 740 -150 {lab=VGND}
 N 740 -260 740 -240 {lab=VbiasL}
 N 740 -380 740 -360 {lab=VbiasH}
 N 740 -300 740 -260 {lab=VbiasL}
@@ -113,35 +113,35 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {lab_pin.sym} 700 -520 0 0 {name=p8 sig_type=std_logic lab=VGND}
-C {sky130_fd_pr/nfet3_01v8.sym} 760 -210 0 1 {name=M5
-W=4
-L=1
-body=VGND
-nf=1
-mult=1
-ad="'int((nf+1)/2) * W/nf * 0.29'" 
-pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
-as="'int((nf+2)/2) * W/nf * 0.29'" 
-ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
-nrd="'0.29 / W'" nrs="'0.29 / W'"
-sa=0 sb=0 sd=0
-model=nfet_01v8
-spiceprefix=X
-}
-C {sky130_fd_pr/nfet3_01v8.sym} 760 -330 0 1 {name=M6
-W=4
-L=1
-body=VGND
-nf=1
-mult=1
-ad="'int((nf+1)/2) * W/nf * 0.29'" 
-pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
-as="'int((nf+2)/2) * W/nf * 0.29'" 
-ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
-nrd="'0.29 / W'" nrs="'0.29 / W'"
-sa=0 sb=0 sd=0
-model=nfet_01v8
-spiceprefix=X
-}
 C {lab_pin.sym} 740 -150 0 0 {name=p14 sig_type=std_logic lab=VGND}
 C {opin.sym} 960 -210 0 0 {name=p3 lab=VbiasL}
+C {sky130_fd_pr/nfet3_g5v0d10v5.sym} 760 -210 0 1 {name=M7
+W=0.5
+L=1
+body=VGND
+nf=1
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_g5v0d10v5
+spiceprefix=X
+}
+C {sky130_fd_pr/nfet3_01v8.sym} 760 -330 0 1 {name=M5
+W=1
+L=0.15
+body=VGND
+nf=1
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8
+spiceprefix=X
+}

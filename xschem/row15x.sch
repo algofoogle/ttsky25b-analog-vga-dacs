@@ -28,7 +28,6 @@ C {lab_pin.sym} 310 -420 0 0 {name=p6 sig_type=std_logic lab=Cn[14:0]}
 C {iopin.sym} 100 -420 0 1 {name=p7 lab=VPWR}
 C {iopin.sym} 100 -300 0 1 {name=p8 lab=VGND}
 C {opin.sym} 600 -280 0 0 {name=p9 lab=Iout}
-C {ipin.sym} 100 -460 0 0 {name=p10 lab=Vbias}
 C {lab_pin.sym} 270 -330 0 0 {name=p11 sig_type=std_logic lab=Vbias}
 C {lab_pin.sym} 330 -310 0 0 {name=p13 sig_type=std_logic lab=VGND}
 C {lab_pin.sym} 330 -420 0 1 {name=p15 sig_type=std_logic lab=VPWR}
@@ -53,3 +52,4 @@ C {lab_pin.sym} 490 -180 0 0 {name=p29 sig_type=std_logic lab=VPWR}
 C {lab_pin.sym} 450 -150 0 0 {name=p30 sig_type=std_logic lab=VPWR}
 C {lab_pin.sym} 450 -90 0 0 {name=p31 sig_type=std_logic lab=VGND}
 C {lab_pin.sym} 270 -90 0 0 {name=p20 sig_type=std_logic lab=VGND}
+C {ipin.sym} 100 -260 0 0 {name=p35 lab=Vbias}
