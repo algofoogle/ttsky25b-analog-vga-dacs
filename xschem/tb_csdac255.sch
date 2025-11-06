@@ -48,10 +48,10 @@ vout_red
 vbias_red
 \\"Vbias src ma;i(vbpwrmon_red) 1000 *\\"
 \\"out mA;i(viout_red) 1000 *\\""
-y1=-0.38654452
-y2=3.8374555
-x1=3.8869361e-07
-x2=7.0688947e-07
+y1=1.8187654
+y2=2.9627066
+x1=1.0003e-11
+x2=2.0084311e-06
 dataset=0}
 B 2 650 -60 2150 830 {flags=graph
 ypos1=0
@@ -96,10 +96,10 @@ vout_red
 vbias_red
 \\"Vbias src ma;i(vbpwrmon_red) 1000 *\\"
 \\"out mA;i(viout_red) 1000 *\\""
-y1=1.2076989
-y2=1.2320955
-x1=3.8869361e-07
-x2=7.0688947e-07
+y1=1.1834308
+y2=1.2165208
+x1=1.0003e-11
+x2=2.0084311e-06
 dataset=0}
 B 4 160 -260 300 -60 {fill=false
 dash=4}
@@ -179,29 +179,32 @@ Vvbias0 bias[0] GND \{bias0\}
 *Vxp7 DATA[7]  GND pulse 0v 1.8v 8u 1n 1n 1u 10u
 *.ELSEIF (singlebits == 0)
 ** Mode to test full 0..255 range:
-Vxp0 DATA[0]  GND pulse 1.8v 0v 0n 1n 1n 39n 80n
-Vxp1 DATA[1]  GND pulse 1.8v 0v 0n 1n 1n 79n 160n
-Vxp2 DATA[2]  GND pulse 1.8v 0v 0n 1n 1n 159n 320n
-Vxp3 DATA[3]  GND pulse 1.8v 0v 0n 1n 1n 319n 640n
-Vxp4 DATA[4]  GND pulse 1.8v 0v 0n 1n 1n 639n 1280n
-Vxp5 DATA[5]  GND pulse 1.8v 0v 0n 1n 1n 1279n 2560n
-Vxp6 DATA[6]  GND pulse 1.8v 0v 0n 1n 1n 2559n 5120n
-Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
+*Vxp0 DATA[0]  GND pulse 1.8v 0v 0n 1n 1n 39n 80n
+*Vxp1 DATA[1]  GND pulse 1.8v 0v 0n 1n 1n 79n 160n
+*Vxp2 DATA[2]  GND pulse 1.8v 0v 0n 1n 1n 159n 320n
+*Vxp3 DATA[3]  GND pulse 1.8v 0v 0n 1n 1n 319n 640n
+*Vxp4 DATA[4]  GND pulse 1.8v 0v 0n 1n 1n 639n 1280n
+*Vxp5 DATA[5]  GND pulse 1.8v 0v 0n 1n 1n 1279n 2560n
+*Vxp6 DATA[6]  GND pulse 1.8v 0v 0n 1n 1n 2559n 5120n
+*Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
 * INVERTED test of full range (255..0):
-*Vxp0 DATA[0]  GND pulse 0v 1.8v 0n 1n 1n 39n 80n
-*Vxp1 DATA[1]  GND pulse 0v 1.8v 0n 1n 1n 79n 160n
-*Vxp2 DATA[2]  GND pulse 0v 1.8v 0n 1n 1n 159n 320n
-*Vxp3 DATA[3]  GND pulse 0v 1.8v 0n 1n 1n 319n 640n
-*Vxp4 DATA[4]  GND pulse 0v 1.8v 0n 1n 1n 639n 1280n
-*Vxp5 DATA[5]  GND pulse 0v 1.8v 0n 1n 1n 1279n 2560n
-*Vxp6 DATA[6]  GND pulse 0v 1.8v 0n 1n 1n 2559n 5120n
-*Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
+Vxp0 DATA[0]  GND pulse 0v 1.8v 0n 1n 1n 39n 80n
+Vxp1 DATA[1]  GND pulse 0v 1.8v 0n 1n 1n 79n 160n
+Vxp2 DATA[2]  GND pulse 0v 1.8v 0n 1n 1n 159n 320n
+Vxp3 DATA[3]  GND pulse 0v 1.8v 0n 1n 1n 319n 640n
+Vxp4 DATA[4]  GND pulse 0v 1.8v 0n 1n 1n 639n 1280n
+Vxp5 DATA[5]  GND pulse 0v 1.8v 0n 1n 1n 1279n 2560n
+Vxp6 DATA[6]  GND pulse 0v 1.8v 0n 1n 1n 2559n 5120n
+Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 *.endif
 
 *.options savecurrents
 
 * 100G-ohm shunt from all nodes to GND:
 .option rshunt = 1.0e11
+
+*.options method=trap xmu=0.495
+*.options method=gear
 
 .control
 	* Start with all bias[*] switches at 0V (ENb), so highest Vbias (max current sink):
@@ -246,7 +249,7 @@ Vxp7 DATA[7]  GND pulse 1.8v 0v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThC.Tn[0]" "XDAC_PEX.XThC.Tn[1]" "XDAC_PEX.XThC.Tn[2]" "XDAC_PEX.XThC.Tn[3]" "XDAC_PEX.XThC.Tn[4]" "XDAC_PEX.XThC.Tn[5]" "XDAC_PEX.XThC.Tn[6]" "XDAC_PEX.XThC.Tn[7]" "XDAC_PEX.XThC.Tn[8]" "XDAC_PEX.XThC.Tn[9]" "XDAC_PEX.XThC.Tn[10]" "XDAC_PEX.XThC.Tn[11]" "XDAC_PEX.XThC.Tn[12]" "XDAC_PEX.XThC.Tn[13]" "XDAC_PEX.XThC.Tn[14]"
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
-				tran 1n 11u
+				tran 1n 11u uic
 				write tb_csdac255_Nov6.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
@@ -458,7 +461,7 @@ footprint=1206
 device="ceramic capacitor"}
 C {lab_pin.sym} 400 -100 3 1 {name=p30 sig_type=std_logic lab=VPWR}
 C {lab_pin.sym} 520 80 1 1 {name=p31 sig_type=std_logic lab=VGND}
-C {devices/launcher.sym} 2220 -220 0 0 {name=h3
+C {devices/launcher.sym} 1990 -990 0 0 {name=h3
 descr="tb_csdac255_Nov6" 
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_Nov6.raw tran"
 }
