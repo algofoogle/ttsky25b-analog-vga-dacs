@@ -54,7 +54,7 @@ value=0.82f
 footprint=1206
 device="ceramic capacitor"}
 C {lab_pin.sym} 700 -510 0 1 {name=p9 sig_type=std_logic lab=Vbias_in}
-C {vbias.sym} 120 -170 0 0 {name=XVB}
+C {vbias085.sym} 120 -170 0 0 {name=XVB[3:0]}
 C {lab_pin.sym} 380 -160 2 1 {name=p19 sig_type=std_logic lab=Vbias}
 C {opin.sym} 90 -230 0 0 {name=p22 lab=Vbias}
 C {res.sym} 430 -160 1 0 {name=R1

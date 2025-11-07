@@ -48,10 +48,10 @@ vout_red
 vbias_red
 \\"Vbias src ma;i(vbpwrmon_red) 1000 *\\"
 \\"out mA;i(viout_red) 1000 *\\""
-y1=1.8187654
-y2=2.9627066
-x1=1.0003e-11
-x2=2.0084311e-06
+y1=1.9857338
+y2=2.0595738
+x1=1.145667e-06
+x2=1.4744539e-06
 dataset=0}
 B 2 650 -60 2150 830 {flags=graph
 ypos1=0
@@ -96,10 +96,10 @@ vout_red
 vbias_red
 \\"Vbias src ma;i(vbpwrmon_red) 1000 *\\"
 \\"out mA;i(viout_red) 1000 *\\""
-y1=1.1834308
-y2=1.2165208
-x1=1.0003e-11
-x2=2.0084311e-06
+y1=1.1928435
+y2=1.2148428
+x1=1.145667e-06
+x2=1.4744539e-06
 dataset=0}
 B 4 160 -260 300 -60 {fill=false
 dash=4}
@@ -249,8 +249,8 @@ Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThC.Tn[0]" "XDAC_PEX.XThC.Tn[1]" "XDAC_PEX.XThC.Tn[2]" "XDAC_PEX.XThC.Tn[3]" "XDAC_PEX.XThC.Tn[4]" "XDAC_PEX.XThC.Tn[5]" "XDAC_PEX.XThC.Tn[6]" "XDAC_PEX.XThC.Tn[7]" "XDAC_PEX.XThC.Tn[8]" "XDAC_PEX.XThC.Tn[9]" "XDAC_PEX.XThC.Tn[10]" "XDAC_PEX.XThC.Tn[11]" "XDAC_PEX.XThC.Tn[12]" "XDAC_PEX.XThC.Tn[13]" "XDAC_PEX.XThC.Tn[14]"
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
-				tran 1n 11u uic
-				write tb_csdac255_Nov6.raw
+				tran 1n 22u uic
+				write tb_csdac255_vbias085_x4.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -423,14 +423,6 @@ value=54f
 footprint=1206
 device="ceramic capacitor"}
 C {lab_pin.sym} 2320 -520 3 1 {name=p70 sig_type=std_logic lab=VPWR}
-C {devices/launcher.sym} 1420 -990 0 0 {name=h2
-descr="tb_csdac255" 
-tclcommand="xschem raw_read $netlist_dir/tb_csdac255.raw tran"
-}
-C {devices/launcher.sym} 1640 -990 0 0 {name=h1
-descr="tb_csdac255_NormalVGND" 
-tclcommand="xschem raw_read $netlist_dir/tb_csdac255_NormalVGND.raw tran"
-}
 C {lab_pin.sym} 2440 -340 1 1 {name=p32 sig_type=std_logic lab=VGND}
 C {capa.sym} 460 -10 0 0 {name=C3
 m=1
@@ -461,10 +453,6 @@ footprint=1206
 device="ceramic capacitor"}
 C {lab_pin.sym} 400 -100 3 1 {name=p30 sig_type=std_logic lab=VPWR}
 C {lab_pin.sym} 520 80 1 1 {name=p31 sig_type=std_logic lab=VGND}
-C {devices/launcher.sym} 1990 -990 0 0 {name=h3
-descr="tb_csdac255_Nov6" 
-tclcommand="xschem raw_read $netlist_dir/tb_csdac255_Nov6.raw tran"
-}
 C {res.sym} 2440 -370 0 0 {name=R3
 value=100m
 footprint=1206
@@ -513,3 +501,13 @@ footprint=1206
 device=resistor
 m=1
 }
+C {devices/launcher.sym} 1490 -990 0 0 {name=h4
+descr="tb_csdac255_Nov6_ThNormal" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_Nov6_ThNormal.raw tran"
+}
+C {devices/launcher.sym} 1870 -990 0 0 {name=h1
+descr="tb_csdac255_vbias_x4" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias_x4.raw tran"}
+C {devices/launcher.sym} 2170 -990 0 0 {name=h2
+descr="tb_csdac255_vbias085_x4" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085_x4.raw tran"}

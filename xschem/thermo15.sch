@@ -119,21 +119,21 @@ C {sky130_stdcells/inv_1.sym} 500 -1040 0 0 {name=XTB4 VGND=VGND VNB=VGND VPB=VP
 C {sky130_stdcells/nor2_1.sym} 520 -960 0 0 {name=XTB5 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
 C {sky130_stdcells/nor2_1.sym} 520 -880 0 0 {name=XTB6 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
 C {sky130_stdcells/nor2_1.sym} 520 -800 0 0 {name=XTB7 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nor2_1.sym} 920 -1260 0 0 {name=XOTn0 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nor2_1.sym} 920 -1180 0 0 {name=XOTn1 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nor2_1.sym} 920 -1100 0 0 {name=XOTn2 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nor2_1.sym} 920 -1020 0 0 {name=XOTn3 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nor2_1.sym} 920 -940 0 0 {name=XOTn4 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nor2_1.sym} 920 -860 0 0 {name=XOTn5 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nor2_1.sym} 920 -780 0 0 {name=XOTn6 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/inv_1.sym} 900 -700 0 0 {name=XOTn7 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nand2_1.sym} 920 -620 0 0 {name=XOTn8 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nand2_1.sym} 920 -540 0 0 {name=XOTn9 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nand2_1.sym} 920 -460 0 0 {name=XOTn10 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nand2_1.sym} 920 -380 0 0 {name=XOTn11 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nand2_1.sym} 920 -300 0 0 {name=XOTn12 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nand2_1.sym} 920 -220 0 0 {name=XOTn13 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
-C {sky130_stdcells/nand2_1.sym} 920 -140 0 0 {name=XOTn14 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nor2_4.sym} 920 -1260 0 0 {name=XOTn0 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nor2_4.sym} 920 -1180 0 0 {name=XOTn1 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nor2_4.sym} 920 -1100 0 0 {name=XOTn2 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nor2_4.sym} 920 -1020 0 0 {name=XOTn3 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nor2_4.sym} 920 -940 0 0 {name=XOTn4 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nor2_4.sym} 920 -860 0 0 {name=XOTn5 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nor2_4.sym} 920 -780 0 0 {name=XOTn6 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/inv_4.sym} 900 -700 0 0 {name=XOTn7 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nand2_4.sym} 920 -620 0 0 {name=XOTn8 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nand2_4.sym} 920 -540 0 0 {name=XOTn9 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nand2_4.sym} 920 -460 0 0 {name=XOTn10 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nand2_4.sym} 920 -380 0 0 {name=XOTn11 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nand2_4.sym} 920 -300 0 0 {name=XOTn12 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nand2_4.sym} 920 -220 0 0 {name=XOTn13 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
+C {sky130_stdcells/nand2_4.sym} 920 -140 0 0 {name=XOTn14 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
 C {sky130_stdcells/inv_1.sym} 240 -700 0 0 {name=XTAN2 VGND=VGND VNB=VGND VPB=VPWR VPWR=VPWR prefix=sky130_fd_sc_hd__ }
 C {iopin.sym} 80 -580 0 1 {name=p3 lab=VPWR}
 C {ipin.sym} 80 -480 0 0 {name=p7 lab=d[3:0]}
