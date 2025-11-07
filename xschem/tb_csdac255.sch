@@ -39,7 +39,7 @@ vbias
 \\"Vbias src ma;i(vbpwrmon) 1000 *\\"
 \\"out mA;i(viout) 1000 *\\"
 
-vout_pex
+xvout_pex
 vbias_pex
 \\"Vbias src ma;i(vbpwrmon_pex) 1000 *\\"
 \\"out mA;i(viout_pex) 1000 *\\"
@@ -48,11 +48,11 @@ vout_red
 vbias_red
 \\"Vbias src ma;i(vbpwrmon_red) 1000 *\\"
 \\"out mA;i(viout_red) 1000 *\\""
-y1=1.9857338
-y2=2.0595738
-x1=1.145667e-06
-x2=1.4744539e-06
-dataset=0}
+y1=-0.056608939
+y2=3.3635511
+x1=1e-11
+x2=1.188e-05
+dataset=-1}
 B 2 650 -60 2150 830 {flags=graph
 ypos1=0
 ypos2=2
@@ -84,23 +84,23 @@ rainbow=0
 color="4 4 4 4 18 18 18 18 7 7 7 7"
 node="vout
 vbias
-\\"Vbias src ma;i(vbpwrmon) 1000 *\\"
-\\"out mA;i(viout) 1000 *\\"
+\\"Vbias src ma;i(xvbpwrmon) 1000 *\\"
+\\"out mA;i(xviout) 1000 *\\"
 
-vout_pex
-vbias_pex
-\\"Vbias src ma;i(vbpwrmon_pex) 1000 *\\"
-\\"out mA;i(viout_pex) 1000 *\\"
+xvout_pex
+xvbias_pex
+\\"Vbias src ma;i(xvbpwrmon_pex) 1000 *\\"
+\\"out mA;i(xviout_pex) 1000 *\\"
 
 vout_red
 vbias_red
-\\"Vbias src ma;i(vbpwrmon_red) 1000 *\\"
-\\"out mA;i(viout_red) 1000 *\\""
-y1=1.1928435
-y2=1.2148428
-x1=1.145667e-06
-x2=1.4744539e-06
-dataset=0}
+\\"Vbias src ma;i(xvbpwrmon_red) 1000 *\\"
+\\"out mA;i(xviout_red) 1000 *\\""
+y1=2.2506218
+y2=3.3770218
+x1=1e-11
+x2=2.2e-05
+dataset=3}
 B 4 160 -260 300 -60 {fill=false
 dash=4}
 T {TTSKY25b} 20 -1140 0 0 1 1 {}
@@ -122,6 +122,9 @@ T {NOTE: VbPWR doesn't exist in the layout!} 290 -1020 0 0 0.28 0.28 {}
 T {CLOSE match for 1 LSB steps:
 400.216/83/320
 54|231} 2340 -140 0 0 0.28 0.28 {}
+T {NOTE: Select elements and SHIFT+T to cycle between
+"open" (i.e. greyed, exclude from sim),
+"short" (red), and active.} 270 -1100 0 0 0.28 0.28 {}
 N 510 -530 510 -510 {lab=#net1}
 N 510 -610 510 -590 {lab=VPU}
 N 510 -450 510 -430 {lab=Vout_red}
@@ -133,20 +136,20 @@ N 190 -240 190 -220 {lab=Vbias_out_redXXX}
 N 390 -320 510 -320 {lab=Vbias_out_red}
 N 160 -550 160 -530 {lab=#net4}
 N 510 -890 510 -870 {lab=#net5}
-N 510 -970 510 -950 {lab=VPU}
-N 510 -810 510 -790 {lab=Vout_pex}
-N 510 -790 540 -790 {lab=Vout_pex}
-N 390 -790 510 -790 {lab=Vout_pex}
-N 2660 -810 2660 -790 {lab=#net6}
+N 510 -970 510 -950 {lab=#net6}
+N 510 -810 510 -790 {lab=#net7}
+N 510 -790 540 -790 {lab=#net7}
+N 390 -790 510 -790 {lab=#net7}
+N 2660 -810 2660 -790 {lab=#net8}
 N 2660 -890 2660 -870 {lab=VPU}
 N 2660 -730 2660 -710 {lab=Vout}
 N 2660 -710 2690 -710 {lab=Vout}
 N 2540 -710 2660 -710 {lab=Vout}
-N 2310 -830 2310 -810 {lab=#net7}
-N 2320 -400 2380 -400 {lab=#net8}
-N 2380 -460 2440 -460 {lab=#net9}
-N 400 20 460 20 {lab=#net10}
-N 460 -40 520 -40 {lab=#net11}
+N 2310 -830 2310 -810 {lab=#net9}
+N 2320 -400 2380 -400 {lab=#net10}
+N 2380 -460 2440 -460 {lab=#net11}
+N 440 -90 500 -90 {lab=#net12}
+N 500 -150 560 -150 {lab=#net13}
 C {devices/vsource.sym} 1110 -1070 0 0 {name=Vvcc value="1.8" savecurrent=false}
 C {devices/gnd.sym} 990 -1040 0 0 {name=l2 lab=GND}
 C {lab_pin.sym} 1110 -1100 0 0 {name=p1 sig_type=std_logic lab=VPWR}
@@ -249,8 +252,8 @@ Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThC.Tn[0]" "XDAC_PEX.XThC.Tn[1]" "XDAC_PEX.XThC.Tn[2]" "XDAC_PEX.XThC.Tn[3]" "XDAC_PEX.XThC.Tn[4]" "XDAC_PEX.XThC.Tn[5]" "XDAC_PEX.XThC.Tn[6]" "XDAC_PEX.XThC.Tn[7]" "XDAC_PEX.XThC.Tn[8]" "XDAC_PEX.XThC.Tn[9]" "XDAC_PEX.XThC.Tn[10]" "XDAC_PEX.XThC.Tn[11]" "XDAC_PEX.XThC.Tn[12]" "XDAC_PEX.XThC.Tn[13]" "XDAC_PEX.XThC.Tn[14]"
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
-				tran 1n 22u uic
-				write tb_csdac255_vbias085_x4.raw
+				tran 1n 2u uic
+				write tb_csdac255_vbias085T_x4_NOPEX.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -274,11 +277,14 @@ C {csdac255.sym} 270 -900 0 0 {name=XDAC_pex
 schematic=csdac255_parax.sim
 spice_sym_def="tcleval(.include [file normalize ../mag/csdac255.sim.spice])"
 tclcommand="textwindow [file normalize ../mag/csdac255.sim.spice]"
-}
+spice_ignore=true}
 C {lab_pin.sym} 540 -430 0 1 {name=p2 sig_type=std_logic lab=Vout_red}
-C {lab_pin.sym} 160 -930 0 0 {name=p4 sig_type=std_logic lab=DATA[7:0]}
-C {lab_pin.sym} 380 -910 0 1 {name=p9 sig_type=std_logic lab=VPWR}
-C {lab_pin.sym} 380 -870 0 1 {name=p12 sig_type=std_logic lab=Vbias_pex}
+C {lab_pin.sym} 160 -930 0 0 {name=p4 sig_type=std_logic lab=DATA[7:0]
+spice_ignore=true}
+C {lab_pin.sym} 380 -910 0 1 {name=p9 sig_type=std_logic lab=VPWR
+spice_ignore=true}
+C {lab_pin.sym} 380 -870 0 1 {name=p12 sig_type=std_logic lab=Vbias_pex
+spice_ignore=true}
 C {tt_pin_model.sym} 300 -410 0 0 {name=XpinIout_red}
 C {lab_pin.sym} 210 -410 0 0 {name=p13 sig_type=std_logic lab=VAPWR}
 C {lab_pin.sym} 390 -410 0 1 {name=p14 sig_type=std_logic lab=VGND}
@@ -295,16 +301,20 @@ value=3p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/gnd.sym} 470 -370 0 0 {name=l5 lab=VGND}
-C {devices/lab_pin.sym} 100 -890 0 0 {name=p20 sig_type=std_logic lab=bias[2:0]}
+C {devices/lab_pin.sym} 100 -890 0 0 {name=p20 sig_type=std_logic lab=bias[2:0]
+spice_ignore=true}
 C {devices/gnd.sym} 1230 -1040 0 0 {name=l1 lab=VGND}
 C {devices/gnd.sym} 1110 -1040 0 0 {name=l3 lab=VGND}
 C {res.sym} 130 -890 1 0 {name=Rbias[2:0]
 value=10k
 footprint=1206
 device=resistor
-m=1}
-C {devices/vsource.sym} 270 -980 0 0 {name=VbPWRmon_pex value="0" savecurrent=false}
-C {lab_pin.sym} 270 -1010 0 0 {name=p23 sig_type=std_logic lab=VPWR}
+m=1
+spice_ignore=true}
+C {devices/vsource.sym} 270 -980 0 0 {name=VbPWRmon_pex value="0" savecurrent=false
+spice_ignore=true}
+C {lab_pin.sym} 270 -1010 0 0 {name=p23 sig_type=std_logic lab=VPWR
+spice_ignore=true}
 C {lab_pin.sym} 210 -430 0 0 {name=p3 sig_type=std_logic lab=Iout_red}
 C {devices/vsource.sym} 190 -110 0 0 {name=VpegVbias121 value="1.21" savecurrent=false}
 C {lab_pin.sym} 190 -240 0 1 {name=p27 sig_type=std_logic lab=Vbias_out_redXXX}
@@ -314,7 +324,8 @@ footprint=1206
 device=resistor
 m=1}
 C {lab_pin.sym} 190 -80 0 1 {name=p28 sig_type=std_logic lab=VGND}
-C {lab_pin.sym} 380 -890 0 1 {name=p6 sig_type=std_logic lab=VGND}
+C {lab_pin.sym} 380 -890 0 1 {name=p6 sig_type=std_logic lab=VGND
+spice_ignore=true}
 C {tt_pin_model.sym} 300 -300 0 0 {name=XpinVBout_red}
 C {lab_pin.sym} 210 -300 0 0 {name=p8 sig_type=std_logic lab=VAPWR}
 C {lab_pin.sym} 390 -300 0 1 {name=p10 sig_type=std_logic lab=VGND}
@@ -342,27 +353,37 @@ device=resistor
 m=1}
 C {devices/vsource.sym} 270 -620 0 0 {name=VbPWRmon_red value="0" savecurrent=false}
 C {lab_pin.sym} 270 -650 0 0 {name=p25 sig_type=std_logic lab=VPWR}
-C {lab_pin.sym} 380 -930 0 1 {name=p34 sig_type=std_logic lab=Iout_pex}
+C {lab_pin.sym} 380 -930 0 1 {name=p34 sig_type=std_logic lab=Iout_pex
+spice_ignore=true}
 C {lab_pin.sym} 380 -570 0 1 {name=p35 sig_type=std_logic lab=Iout_red}
-C {lab_pin.sym} 540 -790 0 1 {name=p36 sig_type=std_logic lab=Vout_pex}
+C {lab_pin.sym} 540 -790 0 1 {name=p36 sig_type=std_logic lab=Vout_pex
+spice_ignore=true}
 C {tt_pin_model.sym} 300 -770 0 0 {name=XpinIout_pex
-}
-C {lab_pin.sym} 210 -770 0 0 {name=p37 sig_type=std_logic lab=VAPWR}
-C {lab_pin.sym} 390 -770 0 1 {name=p38 sig_type=std_logic lab=VGND}
+spice_ignore=true}
+C {lab_pin.sym} 210 -770 0 0 {name=p37 sig_type=std_logic lab=VAPWR
+spice_ignore=true}
+C {lab_pin.sym} 390 -770 0 1 {name=p38 sig_type=std_logic lab=VGND
+spice_ignore=true}
 C {res.sym} 510 -840 0 0 {name=R6
 value=500
 footprint=1206
 device=resistor
-m=1}
-C {devices/vsource.sym} 510 -920 0 0 {name=VIout_pex value="0" savecurrent=false}
-C {lab_pin.sym} 510 -970 0 1 {name=p39 sig_type=std_logic lab=VPU}
+m=1
+spice_ignore=true}
+C {devices/vsource.sym} 510 -920 0 0 {name=VIout_pex value="0" savecurrent=false
+spice_ignore=true}
+C {lab_pin.sym} 510 -970 0 1 {name=p39 sig_type=std_logic lab=VPU
+spice_ignore=true}
 C {devices/capa.sym} 470 -760 0 0 {name=C5
 m=1
 value=3p
 footprint=1206
-device="ceramic capacitor"}
-C {devices/gnd.sym} 470 -730 0 0 {name=l7 lab=VGND}
-C {lab_pin.sym} 210 -790 0 0 {name=p40 sig_type=std_logic lab=Iout_pex}
+device="ceramic capacitor"
+spice_ignore=true}
+C {devices/gnd.sym} 470 -730 0 0 {name=l7 lab=VGND
+spice_ignore=true}
+C {lab_pin.sym} 210 -790 0 0 {name=p40 sig_type=std_logic lab=Iout_pex
+spice_ignore=true}
 C {lab_pin.sym} 2690 -710 0 1 {name=p41 sig_type=std_logic lab=Vout}
 C {tt_pin_model.sym} 2450 -690 0 0 {name=XpinIout}
 C {lab_pin.sym} 2360 -690 0 0 {name=p42 sig_type=std_logic lab=VAPWR}
@@ -400,8 +421,8 @@ m=1
 value=83f
 footprint=1206
 device="ceramic capacitor"}
-C {lab_pin.sym} 2380 -520 3 1 {name=p46 sig_type=std_logic lab=Iout}
-C {lab_pin.sym} 2380 -340 1 1 {name=p47 sig_type=std_logic lab=Vbias}
+C {lab_pin.sym} 2380 -520 2 0 {name=p46 sig_type=std_logic lab=Iout}
+C {lab_pin.sym} 2380 -340 0 0 {name=p47 sig_type=std_logic lab=Vbias}
 C {capa.sym} 2410 -400 1 0 {name=C10
 m=1
 value=231f
@@ -422,37 +443,37 @@ m=1
 value=54f
 footprint=1206
 device="ceramic capacitor"}
-C {lab_pin.sym} 2320 -520 3 1 {name=p70 sig_type=std_logic lab=VPWR}
-C {lab_pin.sym} 2440 -340 1 1 {name=p32 sig_type=std_logic lab=VGND}
-C {capa.sym} 460 -10 0 0 {name=C3
+C {lab_pin.sym} 2320 -520 2 1 {name=p70 sig_type=std_logic lab=VPWR}
+C {lab_pin.sym} 2440 -340 0 1 {name=p32 sig_type=std_logic lab=VGND}
+C {capa.sym} 500 -120 0 0 {name=C3
 m=1
 value=83f
 footprint=1206
 device="ceramic capacitor"}
-C {lab_pin.sym} 460 -100 3 1 {name=p26 sig_type=std_logic lab=Iout_red}
-C {lab_pin.sym} 460 80 1 1 {name=p29 sig_type=std_logic lab=Vbias_red}
-C {capa.sym} 490 20 1 0 {name=C4
+C {lab_pin.sym} 500 -210 2 0 {name=p26 sig_type=std_logic lab=Iout_red}
+C {lab_pin.sym} 500 -30 0 0 {name=p29 sig_type=std_logic lab=Vbias_red}
+C {capa.sym} 530 -90 1 0 {name=C4
 m=1
 value=231f
 footprint=1206
 device="ceramic capacitor"}
-C {capa.sym} 400 -10 0 1 {name=C8
+C {capa.sym} 440 -120 0 1 {name=C8
 m=1
 value=400f
 footprint=1206
 device="ceramic capacitor"}
-C {capa.sym} 520 -10 0 0 {name=C9
+C {capa.sym} 560 -120 0 0 {name=C9
 m=1
 value=320f
 footprint=1206
 device="ceramic capacitor"}
-C {capa.sym} 430 -40 3 0 {name=C14
+C {capa.sym} 470 -150 3 0 {name=C14
 m=1
 value=54f
 footprint=1206
 device="ceramic capacitor"}
-C {lab_pin.sym} 400 -100 3 1 {name=p30 sig_type=std_logic lab=VPWR}
-C {lab_pin.sym} 520 80 1 1 {name=p31 sig_type=std_logic lab=VGND}
+C {lab_pin.sym} 440 -210 2 1 {name=p30 sig_type=std_logic lab=VPWR}
+C {lab_pin.sym} 560 -30 0 1 {name=p31 sig_type=std_logic lab=VGND}
 C {res.sym} 2440 -370 0 0 {name=R3
 value=100m
 footprint=1206
@@ -465,25 +486,25 @@ footprint=1206
 device=resistor
 m=1
 }
-C {res.sym} 520 50 0 0 {name=R5
+C {res.sym} 560 -60 0 0 {name=R5
 value=100m
 footprint=1206
 device=resistor
 m=1
 }
-C {res.sym} 400 -70 0 1 {name=R8
+C {res.sym} 440 -180 0 1 {name=R8
 value=100m
 footprint=1206
 device=resistor
 m=1
 }
-C {res.sym} 460 -70 0 0 {name=R9
+C {res.sym} 500 -180 0 0 {name=R9
 value=100m
 footprint=1206
 device=resistor
 m=1
 }
-C {res.sym} 460 50 0 1 {name=R10
+C {res.sym} 500 -60 0 1 {name=R10
 value=100m
 footprint=1206
 device=resistor
@@ -511,3 +532,9 @@ tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias_x4.raw tran"}
 C {devices/launcher.sym} 2170 -990 0 0 {name=h2
 descr="tb_csdac255_vbias085_x4" 
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085_x4.raw tran"}
+C {devices/launcher.sym} 2170 -1030 0 0 {name=h3
+descr="tb_csdac255_vbias085_x4_NOPEX" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085_x4_NOPEX.raw tran"}
+C {devices/launcher.sym} 2170 -1070 0 0 {name=h5
+descr="tb_csdac255_vbias085T_x4_NOPEX" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085T_x4_NOPEX.raw tran"}

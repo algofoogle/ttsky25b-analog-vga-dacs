@@ -8,12 +8,13 @@ readnet spice $::env(PDK_ROOT)/$::env(PDK)/libs.ref/sky130_fd_sc_hd/spice/sky130
 
 # Add spice files of analog block(s):
 ####NOTE: These are all commented out because we are just testing thermo15 (thermo15c) in this experiment:
+readnet spice ../xschem/simulation/array255x.spice      $schem_netlist_file_handle
+readnet spice ../xschem/simulation/csdac255.spice       $schem_netlist_file_handle
 readnet spice ../xschem/simulation/icell.spice          $schem_netlist_file_handle
 readnet spice ../xschem/simulation/row15x.spice         $schem_netlist_file_handle
-readnet spice ../xschem/simulation/array255x.spice      $schem_netlist_file_handle
-readnet spice ../xschem/simulation/thermo15.spice       $schem_netlist_file_handle
+readnet spice ../xschem/simulation/thermo15.spice       $schem_netlist_file_handle ; # thermo15 and thermo15c
 readnet spice ../xschem/simulation/vbias.spice          $schem_netlist_file_handle
-readnet spice ../xschem/simulation/csdac255.spice       $schem_netlist_file_handle
+readnet spice ../xschem/simulation/vbias085.spice       $schem_netlist_file_handle
 
 # # Add GL verilog of digital block(s) (i.e. flat file from OpenLane hardening):
 #readnet verilog ../verilog/gl/controller_wrapper.pnl.v  $schem_netlist_file_handle

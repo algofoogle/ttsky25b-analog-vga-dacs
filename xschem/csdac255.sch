@@ -4,6 +4,12 @@ K {}
 V {}
 S {}
 E {}
+T {Has lvs_ignore=open to exclude from LVS SPICE netlist.} 750 -480 0 0 0.28 0.28 {}
+T {Has lvs_ignore=open to
+exclude from LVS SPICE
+netlist.} 1010 -230 0 0 0.28 0.28 {}
+T {Has lvs_ignore=short to skip R1 and directly connect in LVS SPICE netlist.} 330 -120 0 0 0.28 0.28 {}
+T {NOTE: To respect lvs_ignore properties, go to Simulation => LVS => Set 'lvs_ignore' variable} 20 -510 0 0 0.28 0.28 {}
 N 700 -360 820 -360 {lab=THERMO_COLn[14:0]}
 N 700 -360 700 -240 {lab=THERMO_COLn[14:0]}
 N 700 -420 700 -380 {lab=THERMO_ROWn[14:0]}
@@ -20,7 +26,7 @@ N 640 -380 700 -380 {lab=THERMO_ROWn[14:0]}
 N 700 -450 700 -420 {lab=THERMO_ROWn[14:0]}
 N 960 -200 960 -140 {lab=THERMO_COLn[14:0]}
 N 380 -160 400 -160 {lab=Vbias}
-N 460 -160 480 -160 {lab=Vbias_in}
+N 460 -160 480 -160 {lab=Vbias}
 N 540 -240 700 -240 {lab=THERMO_COLn[14:0]}
 C {thermo15.sym} 390 -420 0 0 {name=XThR}
 C {array255x.sym} 1010 -360 0 0 {name=XA}
@@ -47,12 +53,14 @@ C {capa.sym} 700 -480 0 0 {name=CR[14:0]
 m=1
 value=1.4f
 footprint=1206
-device="ceramic capacitor"}
+device="ceramic capacitor"
+lvs_ignore=open}
 C {capa.sym} 960 -230 0 0 {name=CC[14:0]
 m=1
 value=0.82f
 footprint=1206
-device="ceramic capacitor"}
+device="ceramic capacitor"
+lvs_ignore=open}
 C {lab_pin.sym} 700 -510 0 1 {name=p9 sig_type=std_logic lab=Vbias_in}
 C {vbias085.sym} 120 -170 0 0 {name=XVB[3:0]}
 C {lab_pin.sym} 380 -160 2 1 {name=p19 sig_type=std_logic lab=Vbias}
@@ -61,7 +69,8 @@ C {res.sym} 430 -160 1 0 {name=R1
 value=10
 footprint=1206
 device=resistor
-m=1}
+m=1
+lvs_ignore=short}
 C {lab_pin.sym} 480 -160 2 0 {name=p8 sig_type=std_logic lab=Vbias_in}
 C {lab_pin.sym} 960 -260 0 1 {name=p11 sig_type=std_logic lab=Vbias_in}
 C {lab_pin.sym} 880 -340 2 1 {name=p16 sig_type=std_logic lab=Vbias_in}
