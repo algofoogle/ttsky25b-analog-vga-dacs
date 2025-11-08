@@ -3,15 +3,10 @@
 Vvcc VPWR VGND 1.8
 Vvpu VAPWR VGND 3.3
 Vvgnd VGND GND 0
-XDAC_pex Iout_pex VPWR VGND Vbias_pex DATA[0] DATA[1] DATA[2] DATA[3] DATA[4] DATA[5] DATA[6] DATA[7] net2[0] net2[1] net2[2]
-+ csdac255_parax
 XpinIout_red VGND VAPWR Iout_red Vout_red tt_pin_model
 R2 net1 Vout_red 500 m=1
 VIout_red VPU net1 0
 C1 Vout_red VGND 3p m=1
-Rbias[2] net2[2] bias[2] 10k m=1
-Rbias[1] net2[1] bias[1] 10k m=1
-Rbias[0] net2[0] bias[0] 10k m=1
 VpegVbias121 net3 VGND 1.21
 R1 Vbias_out_redXXX net3 200 m=1
 XpinVBout_red VGND VAPWR Vbias_red Vbias_out_red tt_pin_model
@@ -22,36 +17,32 @@ XDAC_red DATA[7] DATA[6] DATA[5] DATA[4] DATA[3] DATA[2] DATA[1] DATA[0] Iout_re
 Rbias1[2] net4[2] bias[2] 10k m=1
 Rbias1[1] net4[1] bias[1] 10k m=1
 Rbias1[0] net4[0] bias[0] 10k m=1
-XpinIout_pex VGND VAPWR Iout_pex Vout_pex tt_pin_model
-R6 net5 Vout_pex 500 m=1
-VIout_pex VPU net5 0
-C5 Vout_pex VGND 3p m=1
 XpinIout VGND VAPWR Iout Vout tt_pin_model
-R7 net6 Vout 500 m=1
-VIout VPU net6 0
+R7 net8 Vout 500 m=1
+VIout VPU net8 0
 C6 Vout VGND 3p m=1
-XDAC DATA[7] DATA[6] DATA[5] DATA[4] DATA[3] DATA[2] DATA[1] DATA[0] Iout VPWR VGND Vbias net7[2] net7[1] net7[0] csdac255
-Rbias2[2] net7[2] bias[2] 10k m=1
-Rbias2[1] net7[1] bias[1] 10k m=1
-Rbias2[0] net7[0] bias[0] 10k m=1
-C7 net9 net8 83f m=1
-C10 net12 net8 231f m=1
-C11 net13 net8 400f m=1
-C12 net9 net12 320f m=1
-C13 net13 net9 54f m=1
-C3 net11 net10 83f m=1
-C4 net14 net10 231f m=1
-C8 net15 net10 400f m=1
-C9 net11 net14 320f m=1
-C14 net15 net11 54f m=1
-R3 net12 VGND 100m m=1
-R4 VPWR net13 100m m=1
-R5 net14 VGND 100m m=1
-R8 VPWR net15 100m m=1
-R9 Iout_red net11 100m m=1
-R10 net10 Vbias_red 100m m=1
-R11 Iout net9 100m m=1
-R12 net8 Vbias 100m m=1
+XDAC DATA[7] DATA[6] DATA[5] DATA[4] DATA[3] DATA[2] DATA[1] DATA[0] Iout VPWR VGND Vbias net9[2] net9[1] net9[0] csdac255
+Rbias2[2] net9[2] bias[2] 10k m=1
+Rbias2[1] net9[1] bias[1] 10k m=1
+Rbias2[0] net9[0] bias[0] 10k m=1
+C7 net11 net10 83f m=1
+C10 net14 net10 231f m=1
+C11 net15 net10 400f m=1
+C12 net11 net14 320f m=1
+C13 net15 net11 54f m=1
+C3 net13 net12 83f m=1
+C4 net16 net12 231f m=1
+C8 net17 net12 400f m=1
+C9 net13 net16 320f m=1
+C14 net17 net13 54f m=1
+R3 net14 VGND 100m m=1
+R4 VPWR net15 100m m=1
+R5 net16 VGND 100m m=1
+R8 VPWR net17 100m m=1
+R9 Iout_red net13 100m m=1
+R10 net12 Vbias_red 100m m=1
+R11 Iout net11 100m m=1
+R12 net10 Vbias 100m m=1
 **** begin user architecture code
 
 
@@ -150,7 +141,7 @@ Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 				+ XDAC_PEX.XThR.TA1 XDAC_PEX.XThR.TA2 XDAC_PEX.XThR.TA3 XDAC_PEX.XThR.TAN XDAC_PEX.XThR.TAN2 XDAC_PEX.XThR.TB1 XDAC_PEX.XThR.TB2 XDAC_PEX.XThR.TB3 XDAC_PEX.XThR.TB4 XDAC_PEX.XThR.TB5 XDAC_PEX.XThR.TB6 XDAC_PEX.XThR.TB7 XDAC_PEX.XThR.TBN
 				+ XDAC_PEX.XThC.TA1 XDAC_PEX.XThC.TA2 XDAC_PEX.XThC.TA3 XDAC_PEX.XThC.TAN XDAC_PEX.XThC.TAN2 XDAC_PEX.XThC.TB1 XDAC_PEX.XThC.TB2 XDAC_PEX.XThC.TB3 XDAC_PEX.XThC.TB4 XDAC_PEX.XThC.TB5 XDAC_PEX.XThC.TB6 XDAC_PEX.XThC.TB7 XDAC_PEX.XThC.TBN
 				tran 1n 1u uic
-				write tb_csdac255_vbias085T_x2_PEX.raw
+				write tb_csdac255_vbias085T_x2_NOPEX_vbCshield.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -181,36 +172,36 @@ Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 XThR VPWR VGND THERMO_ROWn[14] THERMO_ROWn[13] THERMO_ROWn[12] THERMO_ROWn[11] THERMO_ROWn[10] THERMO_ROWn[9] THERMO_ROWn[8] THERMO_ROWn[7] THERMO_ROWn[6] THERMO_ROWn[5] THERMO_ROWn[4] THERMO_ROWn[3] THERMO_ROWn[2] THERMO_ROWn[1] THERMO_ROWn[0] data[7] data[6] data[5] data[4] thermo15
 XA VPWR VGND THERMO_ROWn[14] THERMO_ROWn[13] THERMO_ROWn[12] THERMO_ROWn[11] THERMO_ROWn[10] THERMO_ROWn[9] THERMO_ROWn[8] THERMO_ROWn[7] THERMO_ROWn[6] THERMO_ROWn[5] THERMO_ROWn[4] THERMO_ROWn[3] THERMO_ROWn[2] THERMO_ROWn[1] THERMO_ROWn[0] THERMO_COLn[14] THERMO_COLn[13] THERMO_COLn[12] THERMO_COLn[11] THERMO_COLn[10] THERMO_COLn[9] THERMO_COLn[8] THERMO_COLn[7] THERMO_COLn[6] THERMO_COLn[5] THERMO_COLn[4] THERMO_COLn[3] THERMO_COLn[2] THERMO_COLn[1] THERMO_COLn[0] net1 Iout array255x
 XThC VPWR VGND THERMO_COLn[14] THERMO_COLn[13] THERMO_COLn[12] THERMO_COLn[11] THERMO_COLn[10] THERMO_COLn[9] THERMO_COLn[8] THERMO_COLn[7] THERMO_COLn[6] THERMO_COLn[5] THERMO_COLn[4] THERMO_COLn[3] THERMO_COLn[2] THERMO_COLn[1] THERMO_COLn[0] data[3] data[2] data[1] data[0] thermo15
-CR[14] net1 THERMO_ROWn[14] 1.4f m=1
-CR[13] net1 THERMO_ROWn[13] 1.4f m=1
-CR[12] net1 THERMO_ROWn[12] 1.4f m=1
-CR[11] net1 THERMO_ROWn[11] 1.4f m=1
-CR[10] net1 THERMO_ROWn[10] 1.4f m=1
-CR[9] net1 THERMO_ROWn[9] 1.4f m=1
-CR[8] net1 THERMO_ROWn[8] 1.4f m=1
-CR[7] net1 THERMO_ROWn[7] 1.4f m=1
-CR[6] net1 THERMO_ROWn[6] 1.4f m=1
-CR[5] net1 THERMO_ROWn[5] 1.4f m=1
-CR[4] net1 THERMO_ROWn[4] 1.4f m=1
-CR[3] net1 THERMO_ROWn[3] 1.4f m=1
-CR[2] net1 THERMO_ROWn[2] 1.4f m=1
-CR[1] net1 THERMO_ROWn[1] 1.4f m=1
-CR[0] net1 THERMO_ROWn[0] 1.4f m=1
-CC[14] net1 THERMO_COLn[14] 0.82f m=1
-CC[13] net1 THERMO_COLn[13] 0.82f m=1
-CC[12] net1 THERMO_COLn[12] 0.82f m=1
-CC[11] net1 THERMO_COLn[11] 0.82f m=1
-CC[10] net1 THERMO_COLn[10] 0.82f m=1
-CC[9] net1 THERMO_COLn[9] 0.82f m=1
-CC[8] net1 THERMO_COLn[8] 0.82f m=1
-CC[7] net1 THERMO_COLn[7] 0.82f m=1
-CC[6] net1 THERMO_COLn[6] 0.82f m=1
-CC[5] net1 THERMO_COLn[5] 0.82f m=1
-CC[4] net1 THERMO_COLn[4] 0.82f m=1
-CC[3] net1 THERMO_COLn[3] 0.82f m=1
-CC[2] net1 THERMO_COLn[2] 0.82f m=1
-CC[1] net1 THERMO_COLn[1] 0.82f m=1
-CC[0] net1 THERMO_COLn[0] 0.82f m=1
+CR[14] THERMO_ROWn[14] net1 1.387f m=1
+CR[13] THERMO_ROWn[13] net1 1.387f m=1
+CR[12] THERMO_ROWn[12] net1 1.387f m=1
+CR[11] THERMO_ROWn[11] net1 1.387f m=1
+CR[10] THERMO_ROWn[10] net1 1.387f m=1
+CR[9] THERMO_ROWn[9] net1 1.387f m=1
+CR[8] THERMO_ROWn[8] net1 1.387f m=1
+CR[7] THERMO_ROWn[7] net1 1.387f m=1
+CR[6] THERMO_ROWn[6] net1 1.387f m=1
+CR[5] THERMO_ROWn[5] net1 1.387f m=1
+CR[4] THERMO_ROWn[4] net1 1.387f m=1
+CR[3] THERMO_ROWn[3] net1 1.387f m=1
+CR[2] THERMO_ROWn[2] net1 1.387f m=1
+CR[1] THERMO_ROWn[1] net1 1.387f m=1
+CR[0] THERMO_ROWn[0] net1 1.387f m=1
+CC[14] net1 THERMO_COLn[14] 0.435f m=1
+CC[13] net1 THERMO_COLn[13] 0.435f m=1
+CC[12] net1 THERMO_COLn[12] 0.435f m=1
+CC[11] net1 THERMO_COLn[11] 0.435f m=1
+CC[10] net1 THERMO_COLn[10] 0.435f m=1
+CC[9] net1 THERMO_COLn[9] 0.435f m=1
+CC[8] net1 THERMO_COLn[8] 0.435f m=1
+CC[7] net1 THERMO_COLn[7] 0.435f m=1
+CC[6] net1 THERMO_COLn[6] 0.435f m=1
+CC[5] net1 THERMO_COLn[5] 0.435f m=1
+CC[4] net1 THERMO_COLn[4] 0.435f m=1
+CC[3] net1 THERMO_COLn[3] 0.435f m=1
+CC[2] net1 THERMO_COLn[2] 0.435f m=1
+CC[1] net1 THERMO_COLn[1] 0.435f m=1
+CC[0] net1 THERMO_COLn[0] 0.435f m=1
 XVB[1] VbPWR VGND bias[2] bias[1] bias[0] Vbias vbias085
 XVB[0] VbPWR VGND bias[2] bias[1] bias[0] Vbias vbias085
 R1 net1 Vbias 10 m=1
