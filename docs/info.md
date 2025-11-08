@@ -9,12 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+A revision of my 3 current-switching DACs, updated from TTSKY25a. TBC!
 
 ## How to test
 
-Explain how to use your project
+Do the same stuff as per my TTSKY25a version.
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Same requirements as my TTSKY25a version.
