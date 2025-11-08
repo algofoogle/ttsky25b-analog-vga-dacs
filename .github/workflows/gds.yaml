@@ -25,6 +25,7 @@ jobs:
           gds_path: gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
           lef_path: lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef
           verilog_path: src/project.v
+          pdk: sky130A
 
   precheck:
     needs: gds
@@ -32,8 +33,6 @@ jobs:
     steps:
       - name: Run Tiny Tapeout Precheck
         uses: TinyTapeout/tt-gds-action/precheck@ttsky25b
-        with:
-          pdk: sky130
 
   viewer:
     needs: gds
@@ -42,6 +41,4 @@ jobs:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
     steps:
-      - uses: TinyTapeout/tt-gds-action/viewer@ttsky25a
-        with:
-          pdk: sky130
+      - uses: TinyTapeout/tt-gds-action/viewer@ttsky25b
