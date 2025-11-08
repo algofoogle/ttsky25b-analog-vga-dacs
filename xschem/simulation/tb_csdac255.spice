@@ -18,31 +18,31 @@ Rbias1[2] net4[2] bias[2] 10k m=1
 Rbias1[1] net4[1] bias[1] 10k m=1
 Rbias1[0] net4[0] bias[0] 10k m=1
 XpinIout VGND VAPWR Iout Vout tt_pin_model
-R7 net8 Vout 500 m=1
-VIout VPU net8 0
+R7 net6 Vout 500 m=1
+VIout VPU net6 0
 C6 Vout VGND 3p m=1
-XDAC DATA[7] DATA[6] DATA[5] DATA[4] DATA[3] DATA[2] DATA[1] DATA[0] Iout VPWR VGND Vbias net9[2] net9[1] net9[0] csdac255
-Rbias2[2] net9[2] bias[2] 10k m=1
-Rbias2[1] net9[1] bias[1] 10k m=1
-Rbias2[0] net9[0] bias[0] 10k m=1
-C7 net11 net10 83f m=1
-C10 net14 net10 231f m=1
-C11 net15 net10 400f m=1
-C12 net11 net14 320f m=1
-C13 net15 net11 54f m=1
-C3 net13 net12 83f m=1
-C4 net16 net12 231f m=1
-C8 net17 net12 400f m=1
-C9 net13 net16 320f m=1
-C14 net17 net13 54f m=1
-R3 net14 VGND 100m m=1
-R4 VPWR net15 100m m=1
-R5 net16 VGND 100m m=1
-R8 VPWR net17 100m m=1
-R9 Iout_red net13 100m m=1
-R10 net12 Vbias_red 100m m=1
-R11 Iout net11 100m m=1
-R12 net10 Vbias 100m m=1
+XDAC DATA[7] DATA[6] DATA[5] DATA[4] DATA[3] DATA[2] DATA[1] DATA[0] Iout VPWR VGND Vbias net7[2] net7[1] net7[0] csdac255
+Rbias2[2] net7[2] bias[2] 10k m=1
+Rbias2[1] net7[1] bias[1] 10k m=1
+Rbias2[0] net7[0] bias[0] 10k m=1
+C7 net9 net8 83f m=1
+C10 net12 net8 231f m=1
+C11 net13 net8 400f m=1
+C12 net9 net12 320f m=1
+C13 net13 net9 54f m=1
+C3 net11 net10 83f m=1
+C4 net14 net10 231f m=1
+C8 net15 net10 400f m=1
+C9 net11 net14 320f m=1
+C14 net15 net11 54f m=1
+R3 net12 VGND 100m m=1
+R4 VPWR net13 100m m=1
+R5 net14 VGND 100m m=1
+R8 VPWR net15 100m m=1
+R9 Iout_red net11 100m m=1
+R10 net10 Vbias_red 100m m=1
+R11 Iout net9 100m m=1
+R12 net8 Vbias 100m m=1
 **** begin user architecture code
 
 
@@ -141,7 +141,7 @@ Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 				+ XDAC_PEX.XThR.TA1 XDAC_PEX.XThR.TA2 XDAC_PEX.XThR.TA3 XDAC_PEX.XThR.TAN XDAC_PEX.XThR.TAN2 XDAC_PEX.XThR.TB1 XDAC_PEX.XThR.TB2 XDAC_PEX.XThR.TB3 XDAC_PEX.XThR.TB4 XDAC_PEX.XThR.TB5 XDAC_PEX.XThR.TB6 XDAC_PEX.XThR.TB7 XDAC_PEX.XThR.TBN
 				+ XDAC_PEX.XThC.TA1 XDAC_PEX.XThC.TA2 XDAC_PEX.XThC.TA3 XDAC_PEX.XThC.TAN XDAC_PEX.XThC.TAN2 XDAC_PEX.XThC.TB1 XDAC_PEX.XThC.TB2 XDAC_PEX.XThC.TB3 XDAC_PEX.XThC.TB4 XDAC_PEX.XThC.TB5 XDAC_PEX.XThC.TB6 XDAC_PEX.XThC.TB7 XDAC_PEX.XThC.TBN
 				tran 1n 1u uic
-				write tb_csdac255_vbias085T_x2_NOPEX_vbCshield.raw
+				write tb_csdac255_vbias085T_x2_NOPEX_vbshields2.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -187,21 +187,21 @@ CR[3] THERMO_ROWn[3] net1 1.387f m=1
 CR[2] THERMO_ROWn[2] net1 1.387f m=1
 CR[1] THERMO_ROWn[1] net1 1.387f m=1
 CR[0] THERMO_ROWn[0] net1 1.387f m=1
-CC[14] net1 THERMO_COLn[14] 0.435f m=1
-CC[13] net1 THERMO_COLn[13] 0.435f m=1
-CC[12] net1 THERMO_COLn[12] 0.435f m=1
-CC[11] net1 THERMO_COLn[11] 0.435f m=1
-CC[10] net1 THERMO_COLn[10] 0.435f m=1
-CC[9] net1 THERMO_COLn[9] 0.435f m=1
-CC[8] net1 THERMO_COLn[8] 0.435f m=1
-CC[7] net1 THERMO_COLn[7] 0.435f m=1
-CC[6] net1 THERMO_COLn[6] 0.435f m=1
-CC[5] net1 THERMO_COLn[5] 0.435f m=1
-CC[4] net1 THERMO_COLn[4] 0.435f m=1
-CC[3] net1 THERMO_COLn[3] 0.435f m=1
-CC[2] net1 THERMO_COLn[2] 0.435f m=1
-CC[1] net1 THERMO_COLn[1] 0.435f m=1
-CC[0] net1 THERMO_COLn[0] 0.435f m=1
+CC[14] net1 THERMO_COLn[14] 0.334f m=1
+CC[13] net1 THERMO_COLn[13] 0.334f m=1
+CC[12] net1 THERMO_COLn[12] 0.334f m=1
+CC[11] net1 THERMO_COLn[11] 0.334f m=1
+CC[10] net1 THERMO_COLn[10] 0.334f m=1
+CC[9] net1 THERMO_COLn[9] 0.334f m=1
+CC[8] net1 THERMO_COLn[8] 0.334f m=1
+CC[7] net1 THERMO_COLn[7] 0.334f m=1
+CC[6] net1 THERMO_COLn[6] 0.334f m=1
+CC[5] net1 THERMO_COLn[5] 0.334f m=1
+CC[4] net1 THERMO_COLn[4] 0.334f m=1
+CC[3] net1 THERMO_COLn[3] 0.334f m=1
+CC[2] net1 THERMO_COLn[2] 0.334f m=1
+CC[1] net1 THERMO_COLn[1] 0.334f m=1
+CC[0] net1 THERMO_COLn[0] 0.334f m=1
 XVB[1] VbPWR VGND bias[2] bias[1] bias[0] Vbias vbias085
 XVB[0] VbPWR VGND bias[2] bias[1] bias[0] Vbias vbias085
 R1 net1 Vbias 10 m=1

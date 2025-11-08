@@ -54,7 +54,8 @@ y1=1.8904091
 y2=1.9459702
 x1=4.1439661e-07
 x2=9.059117e-07
-dataset=-1}
+dataset=-1
+hilight_wave=-1}
 B 2 650 -60 2150 830 {flags=graph
 ypos1=0
 ypos2=2
@@ -251,7 +252,7 @@ Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
 				tran 1n 1u uic
-				write tb_csdac255_vbias085T_x2_NOPEX_vbCshield.raw
+				write tb_csdac255_vbias085T_x2_NOPEX_vbshields2.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -540,3 +541,6 @@ tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085T_x2_PEX_10Gshunt.r
 C {devices/launcher.sym} 2590 -1110 0 0 {name=h9
 descr="tb_csdac255_vbias085T_x2_NOPEX_vbCshield" 
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085T_x2_NOPEX_vbCshield.raw tran"}
+C {devices/launcher.sym} 2590 -1070 0 0 {name=h10
+descr="tb_csdac255_vbias085T_x2_NOPEX_vbshields2" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085T_x2_NOPEX_vbshields2.raw tran"}
