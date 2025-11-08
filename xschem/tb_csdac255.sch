@@ -33,20 +33,22 @@ rainbow=0
 
 
 
-color="4 4 4 4 18 18 18 18 7 7 7 7"
+color="4 4 4 4 4 18 18 18 18 7 7 7 7 7"
 node="vout
 vbias
-\\"Vbias src ma;i(vbpwrmon) 1000 *\\"
+\\"VbiasI ma;i(vbpwrmon) 1000 *\\"
+\\"VbiasI ma;vpwr v(XDAC.VbPWR) - 1000 * 1000 *\\"
 \\"out mA;i(viout) 1000 *\\"
 
 xvout_pex
 vbias_pex
-\\"Vbias src ma;i(vbpwrmon_pex) 1000 *\\"
+\\"VbiasI ma;i(vbpwrmon_pex) 1000 *\\"
 \\"out mA;i(viout_pex) 1000 *\\"
 
 vout_red
 vbias_red
-\\"Vbias src ma;i(vbpwrmon_red) 1000 *\\"
+\\"VbiasI ma;i(vbpwrmon_red) 1000 *\\"
+\\"VbiasI ma;vpwr v(XDAC_red.VbPWR) - 1000 * 1000 *\\"
 \\"out mA;i(viout_red) 1000 *\\""
 y1=-0.056608939
 y2=3.3635511
@@ -118,7 +120,6 @@ T {Simple PEX "model"} 20 -670 0 0 0.35 0.35 {}
 T {Simple PEX "model"} 2170 -960 0 0 0.35 0.35 {}
 T {600/100/320
 54|231} 2340 -190 0 0 0.28 0.28 {}
-T {NOTE: VbPWR doesn't exist in the layout!} 290 -1020 0 0 0.28 0.28 {}
 T {CLOSE match for 1 LSB steps:
 400.216/83/320
 54|231} 2340 -140 0 0 0.28 0.28 {}
@@ -236,9 +237,9 @@ Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 				+ i(vvcc)
 				+ i(vvpu)
 				+ i(vvgnd)
-				+ i(vbpwrmon)
-				+ i(vbpwrmon_red)
-				+ i(vbpwrmon_pex)
+				+ VPWR
+				+ XDAC.VPWR     XDAC.VbPWR
+				+ XDAC_red.VPWR XDAC_red.VbPWR
 				+ XDAC.vbias_in
 				+ XDAC_red.vbias_in
 				+ "XDAC.THERMO_ROWn[0]" "XDAC.THERMO_ROWn[1]" "XDAC.THERMO_ROWn[2]" "XDAC.THERMO_ROWn[3]" "XDAC.THERMO_ROWn[4]" "XDAC.THERMO_ROWn[5]" "XDAC.THERMO_ROWn[6]" "XDAC.THERMO_ROWn[7]" "XDAC.THERMO_ROWn[8]" "XDAC.THERMO_ROWn[9]" "XDAC.THERMO_ROWn[10]" "XDAC.THERMO_ROWn[11]" "XDAC.THERMO_ROWn[12]" "XDAC.THERMO_ROWn[13]" "XDAC.THERMO_ROWn[14]"
@@ -253,7 +254,7 @@ Vxp7 DATA[7]  GND pulse 0v 1.8v 0n 1n 1n 5119n 10240n
 				+ "XDAC_PEX.XThR.TA1" "XDAC_PEX.XThR.TA2" "XDAC_PEX.XThR.TA3" "XDAC_PEX.XThR.TAN" "XDAC_PEX.XThR.TAN2" "XDAC_PEX.XThR.TB1" "XDAC_PEX.XThR.TB2" "XDAC_PEX.XThR.TB3" "XDAC_PEX.XThR.TB4" "XDAC_PEX.XThR.TB5" "XDAC_PEX.XThR.TB6" "XDAC_PEX.XThR.TB7" "XDAC_PEX.XThR.TBN"
 				+ "XDAC_PEX.XThC.TA1" "XDAC_PEX.XThC.TA2" "XDAC_PEX.XThC.TA3" "XDAC_PEX.XThC.TAN" "XDAC_PEX.XThC.TAN2" "XDAC_PEX.XThC.TB1" "XDAC_PEX.XThC.TB2" "XDAC_PEX.XThC.TB3" "XDAC_PEX.XThC.TB4" "XDAC_PEX.XThC.TB5" "XDAC_PEX.XThC.TB6" "XDAC_PEX.XThC.TB7" "XDAC_PEX.XThC.TBN"
 				tran 1n 2u uic
-				write tb_csdac255_vbias085T_x4_NOPEX.raw
+				write tb_csdac255_vbias085T_x4_NOPEX_TEST.raw
 				*plot vout vbias i(viout)*1000
 				set appendwrite
 				reset
@@ -311,10 +312,6 @@ footprint=1206
 device=resistor
 m=1
 spice_ignore=true}
-C {devices/vsource.sym} 270 -980 0 0 {name=VbPWRmon_pex value="0" savecurrent=false
-spice_ignore=true}
-C {lab_pin.sym} 270 -1010 0 0 {name=p23 sig_type=std_logic lab=VPWR
-spice_ignore=true}
 C {lab_pin.sym} 210 -430 0 0 {name=p3 sig_type=std_logic lab=Iout_red}
 C {devices/vsource.sym} 190 -110 0 0 {name=VpegVbias121 value="1.21" savecurrent=false}
 C {lab_pin.sym} 190 -240 0 1 {name=p27 sig_type=std_logic lab=Vbias_out_redXXX}
@@ -351,8 +348,6 @@ value=10k
 footprint=1206
 device=resistor
 m=1}
-C {devices/vsource.sym} 270 -620 0 0 {name=VbPWRmon_red value="0" savecurrent=false}
-C {lab_pin.sym} 270 -650 0 0 {name=p25 sig_type=std_logic lab=VPWR}
 C {lab_pin.sym} 380 -930 0 1 {name=p34 sig_type=std_logic lab=Iout_pex
 spice_ignore=true}
 C {lab_pin.sym} 380 -570 0 1 {name=p35 sig_type=std_logic lab=Iout_red}
@@ -413,8 +408,6 @@ value=10k
 footprint=1206
 device=resistor
 m=1}
-C {devices/vsource.sym} 2420 -900 0 0 {name=VbPWRmon value="0" savecurrent=false}
-C {lab_pin.sym} 2420 -930 0 0 {name=p57 sig_type=std_logic lab=VPWR}
 C {lab_pin.sym} 2530 -850 0 1 {name=p64 sig_type=std_logic lab=Iout}
 C {capa.sym} 2380 -430 0 0 {name=C7
 m=1
@@ -538,3 +531,6 @@ tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085_x4_NOPEX.raw tran"
 C {devices/launcher.sym} 2170 -1070 0 0 {name=h5
 descr="tb_csdac255_vbias085T_x4_NOPEX" 
 tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085T_x4_NOPEX.raw tran"}
+C {devices/launcher.sym} 2170 -1110 0 0 {name=h6
+descr="tb_csdac255_vbias085T_x4_NOPEX_TEST" 
+tclcommand="xschem raw_read $netlist_dir/tb_csdac255_vbias085T_x4_NOPEX_TEST.raw tran"}

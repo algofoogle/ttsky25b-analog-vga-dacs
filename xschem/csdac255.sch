@@ -4,12 +4,17 @@ K {}
 V {}
 S {}
 E {}
-T {Has lvs_ignore=open to exclude from LVS SPICE netlist.} 750 -480 0 0 0.28 0.28 {}
 T {Has lvs_ignore=open to
 exclude from LVS SPICE
 netlist.} 1010 -230 0 0 0.28 0.28 {}
-T {Has lvs_ignore=short to skip R1 and directly connect in LVS SPICE netlist.} 330 -120 0 0 0.28 0.28 {}
+T {Has lvs_ignore=short to skip R1 and directly connect in LVS SPICE netlist.} 340 -60 0 0 0.28 0.28 {}
 T {NOTE: To respect lvs_ignore properties, go to Simulation => LVS => Set 'lvs_ignore' variable} 20 -510 0 0 0.28 0.28 {}
+T {Has lvs_ignore=short: Only used to
+measure Vbias's current in sim; absent from layout.} 260 -180 0 0 0.28 0.28 {}
+T {Has lvs_ignore=open to
+exclude from LVS SPICE
+netlist.} 780 -510 0 0 0.28 0.28 {}
+T {1000*[(VPWR-VbPWR)/0.001] = Vbias generator's current in mA} 290 -130 0 0 0.28 0.28 {}
 N 700 -360 820 -360 {lab=THERMO_COLn[14:0]}
 N 700 -360 700 -240 {lab=THERMO_COLn[14:0]}
 N 700 -420 700 -380 {lab=THERMO_ROWn[14:0]}
@@ -25,17 +30,23 @@ N 540 -380 640 -380 {lab=THERMO_ROWn[14:0]}
 N 640 -380 700 -380 {lab=THERMO_ROWn[14:0]}
 N 700 -450 700 -420 {lab=THERMO_ROWn[14:0]}
 N 960 -200 960 -140 {lab=THERMO_COLn[14:0]}
-N 380 -160 400 -160 {lab=Vbias}
-N 460 -160 480 -160 {lab=Vbias}
 N 540 -240 700 -240 {lab=THERMO_COLn[14:0]}
+N 220 -80 280 -80 {lab=Vbias}
+N 220 -80 220 -40 {lab=Vbias}
+N 340 -80 880 -80 {lab=Vbias}
+N 880 -340 880 -80 {lab=Vbias}
+N 880 -260 960 -260 {lab=Vbias}
+N 700 -510 780 -510 {lab=Vbias}
+N 780 -510 780 -260 {lab=Vbias}
+N 780 -260 880 -260 {lab=Vbias}
 C {thermo15.sym} 390 -420 0 0 {name=XThR}
 C {array255x.sym} 1010 -360 0 0 {name=XA}
 C {thermo15.sym} 390 -280 0 0 {name=XThC}
-C {iopin.sym} 20 -250 0 1 {name=p1 lab=VPWR}
+C {iopin.sym} 20 -260 0 1 {name=p1 lab=VPWR}
 C {opin.sym} 1140 -340 0 0 {name=p3 lab=Iout}
-C {iopin.sym} 20 -230 0 1 {name=p5 lab=VGND}
-C {ipin.sym} 20 -190 0 0 {name=p7 lab=bias[2:0]}
-C {ipin.sym} 20 -290 0 0 {name=p12 lab=data[7:0]}
+C {iopin.sym} 20 -240 0 1 {name=p5 lab=VGND}
+C {ipin.sym} 20 -120 0 0 {name=p7 lab=bias[2:0]}
+C {ipin.sym} 20 -300 0 0 {name=p12 lab=data[7:0]}
 C {lab_pin.sym} 240 -460 0 0 {name=p13 sig_type=std_logic lab=data[7:4]}
 C {lab_pin.sym} 240 -320 0 0 {name=p14 sig_type=std_logic lab=data[3:0]}
 C {lab_pin.sym} 540 -460 0 1 {name=p15 sig_type=std_logic lab=VPWR}
@@ -46,9 +57,7 @@ C {lab_pin.sym} 1140 -380 0 1 {name=p24 sig_type=std_logic lab=VPWR}
 C {lab_pin.sym} 1140 -360 0 1 {name=p25 sig_type=std_logic lab=VGND}
 C {lab_pin.sym} 740 -420 0 1 {name=p10 sig_type=std_logic lab=THERMO_ROWn[14:0]}
 C {lab_pin.sym} 740 -240 0 1 {name=p27 sig_type=std_logic lab=THERMO_COLn[14:0]}
-C {lab_pin.sym} 220 -190 0 1 {name=p2 sig_type=std_logic lab=VbPWR}
-C {lab_pin.sym} 220 -170 0 1 {name=p4 sig_type=std_logic lab=VGND}
-C {iopin.sym} 110 -250 0 1 {name=p6 lab=VbPWR}
+C {lab_pin.sym} 220 -100 0 1 {name=p4 sig_type=std_logic lab=VGND}
 C {capa.sym} 700 -480 0 0 {name=CR[14:0]
 m=1
 value=1.4f
@@ -61,17 +70,20 @@ value=0.82f
 footprint=1206
 device="ceramic capacitor"
 lvs_ignore=open}
-C {lab_pin.sym} 700 -510 0 1 {name=p9 sig_type=std_logic lab=Vbias_in}
-C {vbias085.sym} 120 -170 0 0 {name=XVB[3:0]}
-C {lab_pin.sym} 380 -160 2 1 {name=p19 sig_type=std_logic lab=Vbias}
-C {opin.sym} 90 -230 0 0 {name=p22 lab=Vbias}
-C {res.sym} 430 -160 1 0 {name=R1
+C {vbias085.sym} 120 -100 0 0 {name=XVB[1:0]}
+C {opin.sym} 20 -220 0 0 {name=p22 lab=Vbias}
+C {res.sym} 310 -80 1 0 {name=R1
 value=10
 footprint=1206
 device=resistor
 m=1
 lvs_ignore=short}
-C {lab_pin.sym} 480 -160 2 0 {name=p8 sig_type=std_logic lab=Vbias_in}
-C {lab_pin.sym} 960 -260 0 1 {name=p11 sig_type=std_logic lab=Vbias_in}
-C {lab_pin.sym} 880 -340 2 1 {name=p16 sig_type=std_logic lab=Vbias_in}
-C {lab_pin.sym} 220 -150 0 1 {name=p26 sig_type=std_logic lab=Vbias}
+C {lab_pin.sym} 220 -40 0 1 {name=p26 sig_type=std_logic lab=Vbias}
+C {lab_pin.sym} 220 -180 1 0 {name=p6 sig_type=std_logic lab=VPWR}
+C {res.sym} 220 -150 0 0 {name=R2
+value=1m
+footprint=1206
+device=resistor
+m=1
+lvs_ignore=short}
+C {lab_pin.sym} 220 -120 0 1 {name=p2 sig_type=std_logic lab=VbPWR}
