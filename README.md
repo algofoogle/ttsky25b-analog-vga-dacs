@@ -2,12 +2,9 @@
 
 # Analog VGA DAC (and related) experiments on Tiny Tapeout TTSKY25b
 
-Ideas:
-*   PMOS current sources for going 0-0.7V instead of pulldown
-*   Existing matrix DAC but squashed for overlaps, and with bigger Vbias
-*   Mix with other DACs -- transmission gates
-*   Row-level power (gnd) on/off
+![Analog VGA current-switching DAC matrix title card](./docs/social-preview.jpg)
 
+Current switching matrix DAC implementations for analog VGA displays. This is a revision of the same project that was [submitted to TTSKY25a](https://tinytapeout.com/chips/ttsky25a/tt_um_algofoogle_vga_matrix_dac). It improves some coupling problems in the TTSKY25a version.
 
 - [Read the documentation for project](docs/info.md)
 
@@ -21,23 +18,9 @@ To learn more and get started, visit https://tinytapeout.com.
 
 For specifications and instructions, see the [analog specs page](https://tinytapeout.com/specs/analog/).
 
-## Enable GitHub actions to build the results page
-
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
-
 ## Resources
 
 - [FAQ](https://tinytapeout.com/faq/)
 - [Digital design lessons](https://tinytapeout.com/digital_design/)
 - [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
 - [Join the community](https://tinytapeout.com/discord)
-
-## What next?
-
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
-  - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
