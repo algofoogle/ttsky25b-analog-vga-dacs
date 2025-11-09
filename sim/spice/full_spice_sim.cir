@@ -1,0 +1,361 @@
+Full circuit sim of extracted digital and analog blocks
+
+*.lib /home/matt/work/asic-workshop/shuttle-2404/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+* .lib /home/anton/asic/ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.lib /home/anton/asic/ciel/sky130A/libs.tech/combined/sky130.lib.spice tt
+
+*NOTE: In order to use this, you must first extract:
+*   tt_um_algofoogle_vga_matrix_dac.from_gds.sim.spice
+* ...by being in the mag/ directory and running:
+*   make sim_spice_from_gds
+* Alternatively, you can use a sim SPICE netlist from the magic layout:
+*   make tt_um_algofoogle_vga_matrix_dac.sim.spice
+*NOTE: Please sure the pin order for your extracted .subck matches the pin order in 'xtt' below.
+.include "tt_um_algofoogle_vga_matrix_dac.from_gds.sim.spice"
+*.include "layout_from_gds-6xIref.sim.spice"
+
+* This is the model of estimated TT08 (and above) pin loading:
+.include "tt08pin.spice"
+
+* Disable mismatch:
+.param mc_mm_switch=0
+* Disable Monte Carlo:
+.param mc_pr_switch=0
+
+
+*NOTE: Port ordering matches how it was extracted by Magic:
+xtt
++ clk
++ ena
++ rst_n
++ ua[0]
++ ua[1]
++ ua[2]
++ ua[3]
++ ua[4]
++ ua[5]
++ ua[6]
++ ua[7]
++ ui_in[0]
++ ui_in[1]
++ ui_in[2]
++ ui_in[3]
++ ui_in[4]
++ ui_in[5]
++ ui_in[6]
++ ui_in[7]
++ uio_in[0]
++ uio_in[1]
++ uio_in[2]
++ uio_in[3]
++ uio_in[4]
++ uio_in[5]
++ uio_in[6]
++ uio_in[7]
++ uio_oe[0]
++ uio_oe[1]
++ uio_oe[2]
++ uio_oe[3]
++ uio_oe[4]
++ uio_oe[5]
++ uio_oe[6]
++ uio_oe[7]
++ uio_out[0]
++ uio_out[1]
++ uio_out[2]
++ uio_out[3]
++ uio_out[4]
++ uio_out[5]
++ uio_out[6]
++ uio_out[7]
++ uo_out[0]
++ uo_out[1]
++ uo_out[2]
++ uo_out[3]
++ uo_out[4]
++ uo_out[5]
++ uo_out[6]
++ uo_out[7]
++ vcc
++ 0
++ tt_um_algofoogle_vga_matrix_dac_parax
+
+
+.param ipullup=500
+* .param vbiasimp=500
+* .param vbiasset=1.05
+
+XRpin   routpin     ua[0] GND vcca tt08pin
+XGpin   goutpin     ua[1] GND vcca tt08pin
+XBpin   boutpin     ua[2] GND vcca tt08pin
+XRvbias rvbiaspin   ua[3] GND vcca tt08pin
+
+* Additional pin loading:
+Cua0pin rvbiaspin   GND 5p
+CRpin   routpin     GND 5p
+CGpin   goutpin     GND 5p
+CBpin   boutpin     GND 5p
+
+* Pull-ups:
+RRpin   routpin     vcca {ipullup}
+RGpin   goutpin     vcca {ipullup}
+RBpin   boutpin     vcca {ipullup}
+
+* * Weak sense load on red's Vbias:
+* Rrvbiaspin rvbiaspin GND 1Meg
+
+* * Voltage ref for fixed vbias'es:
+* Vvbiaspeg vbiaspeg 0 {vbiasset}
+* * Tie all vbias rails (internal and external) to 1.2V via 500-ohm R:
+* RRvbpeg vbiaspeg rvbiaspin              {vbiasimp}
+* RGvbpeg vbiaspeg xtt.dac_green.vbias    {vbiasimp}
+* RBvbpeg vbiaspeg xtt.dac_blue.vbias     {vbiasimp}
+
+**** End of the DAC and its subcircuits.  Begin test circuit ****
+
+.param vcc=1.8
+vcc vcc 0 {vcc}
+.param vapwr=3.3
+vcca vcca 0 {vapwr}
+* vgnd vgnd 0 0.0 ; Used for monitoring total current sink to GND.
+
+*NOTE: Can using .csparam (https://electronics.stackexchange.com/a/635638)
+* here be used to simplify this?
+.param rise=     1n
+.param fall=     1n
+* Duty cycle (high time) of each digital input:
+.param h0=   40n-1n
+.param h1=   80n-1n
+.param h2=  160n-1n
+.param h3=  320n-1n
+.param h4=  640n-1n
+.param h5= 1280n-1n
+.param h6= 2560n-1n
+.param h7= 5120n-1n
+* Period of each digital input:
+.param p0=   80n
+.param p1=  160n
+.param p2=  320n
+.param p3=  640n
+.param p4= 1280n
+.param p5= 2560n
+.param p6= 5120n
+.param p7=10240n
+
+* * --- Mode 0: PASS: ui_in passes thru directly to all 3 DACs ---
+* Vin0 ui_in[0] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h7} {p7} ;NOTE: h0/p0 used on MSB!
+* Vin1 ui_in[1] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h1} {p1}
+* Vin2 ui_in[2] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h2} {p2}
+* Vin3 ui_in[3] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h3} {p3}
+* Vin4 ui_in[4] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h4} {p4}
+* Vin5 ui_in[5] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h5} {p5}
+* Vin6 ui_in[6] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h6} {p6}
+* Vin7 ui_in[7] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h0} {p0}
+
+* --- MODE 2: BARS (div-2):
+* * 0_010_01_11 => VGA_MODE2BARS_DIV2_ALLPRIMARY
+*   0_010_01_01 => VGA_MODE2BARS_DIV2_GREENPRIMARY
+Vin0 ui_in[0] GND dc {vcc}
+Vin1 ui_in[1] GND dc 0.0
+Vin2 ui_in[2] GND dc {vcc}
+Vin3 ui_in[3] GND dc 0.0
+Vin4 ui_in[4] GND dc 0.0
+Vin5 ui_in[5] GND dc {vcc}
+Vin6 ui_in[6] GND dc 0.0
+Vin7 ui_in[7] GND dc 0.0
+
+* * --- MODE 5: XOR2:
+* Vin0 ui_in[0] GND dc 0.0
+* Vin1 ui_in[1] GND dc {vcc}
+* Vin2 ui_in[2] GND dc 0.0
+* Vin3 ui_in[3] GND dc {vcc}
+* Vin4 ui_in[4] GND dc {vcc}
+* Vin5 ui_in[5] GND dc 0.0
+* Vin6 ui_in[6] GND dc {vcc}
+* Vin7 ui_in[7] GND dc 0.0
+
+* * --- MODE 1: RAMP, on all 3 channels:
+* Vin0 ui_in[0] GND dc {vcc}
+* Vin1 ui_in[1] GND dc {vcc}
+* Vin2 ui_in[2] GND dc 0.0
+* Vin3 ui_in[3] GND dc 0.0
+* Vin4 ui_in[4] GND dc {vcc}
+* Vin5 ui_in[5] GND dc 0.0
+* Vin6 ui_in[6] GND dc 0.0
+* Vin7 ui_in[7] GND dc 0.0
+
+* * Configure Vbias to be L5 (~1.05V) => ~1.45mA at peak:
+* Vvbias0 uio_in[2] GND dc 0.0
+* Vvbias1 uio_in[3] GND dc {vcc}
+* Vvbias2 uio_in[4] GND dc 0.0
+
+* Configure Vbias to be L5 (active low, so {0,1.8,0}=0b101=5):
+Vvbias0 uio_in[2] GND dc 0.0
+Vvbias1 uio_in[3] GND dc {vcc}
+Vvbias2 uio_in[4] GND dc 0.0
+* *NOTE: L3 would be:
+* Vvbias0 uio_in[2] GND dc 0.0
+* Vvbias1 uio_in[3] GND dc 0.0
+* Vvbias2 uio_in[4] GND dc {vcc}
+
+* * Digital clock signal
+* aclock 0 clk clock
+* .model clock d_osc cntl_array=[-1 1] freq_array=[25Meg 25Meg]
+
+* Pulse generators...
+*       net     ref fn     init   alt  dly  rise  fall  dut  period
+* 25MHz clock:
+Vclk    clk     GND PULSE   0.0 {vcc}   0n    1n    1n  20n  40n
+* reset signal
+Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
+
+.control
+    * option trtol=8 reltol=2e-3
+    save
+    + vcc
+    + vcca
+    + i(vcc)
+    + "ua[0]"
+    + "ua[1]"
+    + "ua[2]"
+    + "ua[3]"
+    + routpin
+    + goutpin
+    + boutpin
+    + rvbiaspin
+    + clk
+    + rst_n
+    + "uio_out[0]"
+    + "uio_out[1]"
+    + "uo_out[0]"
+    + "uo_out[1]"
+    + "uo_out[2]"
+    + "uo_out[3]"
+    + "uo_out[4]"
+    + "uo_out[5]"
+    + "uo_out[6]"
+    + "uo_out[7]"
+    + "xtt.controller_wrapper_0.R[0]"
+    + "xtt.controller_wrapper_0.R[1]"
+    + "xtt.controller_wrapper_0.R[2]"
+    + "xtt.controller_wrapper_0.R[3]"
+    + "xtt.controller_wrapper_0.R[4]"
+    + "xtt.controller_wrapper_0.R[5]"
+    + "xtt.controller_wrapper_0.R[6]"
+    + "xtt.controller_wrapper_0.R[7]"
+    + "xtt.controller_wrapper_0.G[0]"
+    + "xtt.controller_wrapper_0.G[1]"
+    + "xtt.controller_wrapper_0.G[2]"
+    + "xtt.controller_wrapper_0.G[3]"
+    + "xtt.controller_wrapper_0.G[4]"
+    + "xtt.controller_wrapper_0.G[5]"
+    + "xtt.controller_wrapper_0.G[6]"
+    + "xtt.controller_wrapper_0.G[7]"
+    + "xtt.controller_wrapper_0.B[0]"
+    + "xtt.controller_wrapper_0.B[1]"
+    + "xtt.controller_wrapper_0.B[2]"
+    + "xtt.controller_wrapper_0.B[3]"
+    + "xtt.controller_wrapper_0.B[4]"
+    + "xtt.controller_wrapper_0.B[5]"
+    + "xtt.controller_wrapper_0.B[6]"
+    + "xtt.controller_wrapper_0.B[7]"
+    + "xtt.dac_green.Vbias"
+    + "xtt.dac_blue.Vbias"
+    + "xtt.dac_red.XThR.Tn[0]"  "xtt.dac_green.XThR.Tn[0]"  "xtt.dac_blue.XThR.Tn[0]"
+    + "xtt.dac_red.XThR.Tn[1]"  "xtt.dac_green.XThR.Tn[1]"  "xtt.dac_blue.XThR.Tn[1]"
+    + "xtt.dac_red.XThR.Tn[2]"  "xtt.dac_green.XThR.Tn[2]"  "xtt.dac_blue.XThR.Tn[2]"
+    + "xtt.dac_red.XThR.Tn[3]"  "xtt.dac_green.XThR.Tn[3]"  "xtt.dac_blue.XThR.Tn[3]"
+    + "xtt.dac_red.XThR.Tn[4]"  "xtt.dac_green.XThR.Tn[4]"  "xtt.dac_blue.XThR.Tn[4]"
+    + "xtt.dac_red.XThR.Tn[5]"  "xtt.dac_green.XThR.Tn[5]"  "xtt.dac_blue.XThR.Tn[5]"
+    + "xtt.dac_red.XThR.Tn[6]"  "xtt.dac_green.XThR.Tn[6]"  "xtt.dac_blue.XThR.Tn[6]"
+    + "xtt.dac_red.XThR.Tn[7]"  "xtt.dac_green.XThR.Tn[7]"  "xtt.dac_blue.XThR.Tn[7]"
+    + "xtt.dac_red.XThR.Tn[8]"  "xtt.dac_green.XThR.Tn[8]"  "xtt.dac_blue.XThR.Tn[8]"
+    + "xtt.dac_red.XThR.Tn[9]"  "xtt.dac_green.XThR.Tn[9]"  "xtt.dac_blue.XThR.Tn[9]"
+    + "xtt.dac_red.XThR.Tn[10]" "xtt.dac_green.XThR.Tn[10]" "xtt.dac_blue.XThR.Tn[10]"
+    + "xtt.dac_red.XThR.Tn[11]" "xtt.dac_green.XThR.Tn[11]" "xtt.dac_blue.XThR.Tn[11]"
+    + "xtt.dac_red.XThR.Tn[12]" "xtt.dac_green.XThR.Tn[12]" "xtt.dac_blue.XThR.Tn[12]"
+    + "xtt.dac_red.XThR.Tn[13]" "xtt.dac_green.XThR.Tn[13]" "xtt.dac_blue.XThR.Tn[13]"
+    + "xtt.dac_red.XThR.Tn[14]" "xtt.dac_green.XThR.Tn[14]" "xtt.dac_blue.XThR.Tn[14]"
+    + "xtt.dac_red.XThC.Tn[0]"  "xtt.dac_green.XThC.Tn[0]"  "xtt.dac_blue.XThC.Tn[0]"
+    + "xtt.dac_red.XThC.Tn[1]"  "xtt.dac_green.XThC.Tn[1]"  "xtt.dac_blue.XThC.Tn[1]"
+    + "xtt.dac_red.XThC.Tn[2]"  "xtt.dac_green.XThC.Tn[2]"  "xtt.dac_blue.XThC.Tn[2]"
+    + "xtt.dac_red.XThC.Tn[3]"  "xtt.dac_green.XThC.Tn[3]"  "xtt.dac_blue.XThC.Tn[3]"
+    + "xtt.dac_red.XThC.Tn[4]"  "xtt.dac_green.XThC.Tn[4]"  "xtt.dac_blue.XThC.Tn[4]"
+    + "xtt.dac_red.XThC.Tn[5]"  "xtt.dac_green.XThC.Tn[5]"  "xtt.dac_blue.XThC.Tn[5]"
+    + "xtt.dac_red.XThC.Tn[6]"  "xtt.dac_green.XThC.Tn[6]"  "xtt.dac_blue.XThC.Tn[6]"
+    + "xtt.dac_red.XThC.Tn[7]"  "xtt.dac_green.XThC.Tn[7]"  "xtt.dac_blue.XThC.Tn[7]"
+    + "xtt.dac_red.XThC.Tn[8]"  "xtt.dac_green.XThC.Tn[8]"  "xtt.dac_blue.XThC.Tn[8]"
+    + "xtt.dac_red.XThC.Tn[9]"  "xtt.dac_green.XThC.Tn[9]"  "xtt.dac_blue.XThC.Tn[9]"
+    + "xtt.dac_red.XThC.Tn[10]" "xtt.dac_green.XThC.Tn[10]" "xtt.dac_blue.XThC.Tn[10]"
+    + "xtt.dac_red.XThC.Tn[11]" "xtt.dac_green.XThC.Tn[11]" "xtt.dac_blue.XThC.Tn[11]"
+    + "xtt.dac_red.XThC.Tn[12]" "xtt.dac_green.XThC.Tn[12]" "xtt.dac_blue.XThC.Tn[12]"
+    + "xtt.dac_red.XThC.Tn[13]" "xtt.dac_green.XThC.Tn[13]" "xtt.dac_blue.XThC.Tn[13]"
+    + "xtt.dac_red.XThC.Tn[14]" "xtt.dac_green.XThC.Tn[14]" "xtt.dac_blue.XThC.Tn[14]"
+
+    tran 8n 8193u 0 8n UIC ; 8192u is about 256 lines.
+    *plot routpin goutpin boutpin
+    *NOTE: We write out:
+    * ua0           = R internal
+    * ua1           = G internal
+    * ua2           = B internal
+    * routpin       = R external
+    * goutpin       = G external
+    * boutpin       = B external
+    * uo_out0       = r7
+    * uo_out1       = g7
+    * uo_out2       = b7
+    * uo_out3       = vsync
+    * uo_out4       = r6
+    * uo_out5       = g6
+    * uo_out6       = b6
+    * uo_out7       = hsync
+    * uio_out0      = vblank
+    * uio_out1      = hblank
+    * clk
+    * rst_n
+    write sim_out/full_spice_sim.raw
+    snsave sim_out/full_spice_sim.snap
+
+    set  color0=black           ; Background.
+    set  color1=rgb:44/44/44    ; Text/grid.
+    set  color2=rgb:77/00/77    ; clk           (Dark magenta)
+    set  color3=rgb:77/77/00    ; rst_n         (Dark yellow)
+    set  color4=rgb:ff/00/00    ; routpin       (Red)
+    set  color5=rgb:00/ff/00    ; goutpin       (Green)
+    set  color6=rgb:00/00/ff    ; boutpin       (Blue)
+    set  color7=rgb:99/00/00    ; rvbiaspin     (Red, DARK)
+    set  color8=rgb:00/99/00    ; green.vbias   (Green, DARK)
+    set  color9=rgb:00/00/99    ; blue.vbias    (Blue, DARK)
+    set color10=rgb:cc/cc/00    ; hsync (uo[7]) (Mid yellow)
+    set color11=rgb:cc/00/cc    ; vsync (uo[3]) (Mid magenta)
+
+    * plot routpin boutpin xtt.dac_green.vbias goutpin xtt.dac_blue.vbias rvbiaspin 0+( "xtt.controller_wrapper_0.R[7]"/2 + "xtt.controller_wrapper_0.R[6]"/4 + "xtt.controller_wrapper_0.R[5]"/8 + "xtt.controller_wrapper_0.R[4]"/16 + "xtt.controller_wrapper_0.R[3]"/32 + "xtt.controller_wrapper_0.R[2]"/64 + "xtt.controller_wrapper_0.R[1]"/128 + "xtt.controller_wrapper_0.R[0]"/256 )/1.8
+* plot
+* clk
+* rst_n
+* routpin
+* goutpin
+* boutpin
+* rvbiaspin
+* xtt.dac_green.vbias
+* xtt.dac_blue.vbias
+* uo_out[7]
+* uo_out[3]
+* xlimit 0     1us ylimit 0 3.3
+* xlimit 0     2us ylimit 0 3.3
+* xlimit 0    26us ylimit 0 3.3
+* xlimit 9us  11us ylimit 0 3.3
+    plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" xlimit 0 1us ylimit 0 3.3
+    plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" xlimit 0 2us ylimit 0 3.3
+    plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" xlimit 0 26us ylimit 0 3.3
+    plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" xlimit 9.5us 11us ylimit 0 3.3
+    plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" xlimit 20us 21us ylimit 0 3.3
+    * plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" ylimit 0 3.3
+    * plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" ylimit 2.4 3.3
+    * plot clk/9 rst_n routpin 0       0       rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" ylimit 2.4 3.3
+    * plot clk/9 rst_n 0       goutpin 0       rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" ylimit 2.4 3.3
+    * plot clk/9 rst_n 0       0       boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" ylimit 2.4 3.3
+    
+    * plot goutpin 0+( "xtt.controller_wrapper_0.G[7]"/2 + "xtt.controller_wrapper_0.G[6]"/4 + "xtt.controller_wrapper_0.G[5]"/8 + "xtt.controller_wrapper_0.G[4]"/16 + "xtt.controller_wrapper_0.G[3]"/32 + "xtt.controller_wrapper_0.G[2]"/64 + "xtt.controller_wrapper_0.G[1]"/128 + "xtt.controller_wrapper_0.G[0]"/256 )/1.8
+.endc
+.end

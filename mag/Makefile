@@ -50,11 +50,11 @@ $(PROJECT_NAME).sim.spice: $(PROJECT_NAME).mag
 #   make tt_um_algofoogle_vga_matrix_dac.from_gds.sim.spice
 # ...expects the GDS to be in the ../gds/ working directory,
 # and writes the output tt_um_algofoogle_vga_matrix_dac.from_gds.sim.spice
-# to ../sim/spice/
+# to ../sim/spice/.
+# It takes about 6.5 minutes for tt_um_algofoogle_vga_matrix_dac.
 sim_spice_from_gds: ../gds/$(PROJECT_NAME).gds
-    pushd ../gds
-    magic -noconsole -dnull ../mag/tcl/extract_from_gds_for_sim.tcl $(PROJECT_NAME)
-    popd
+	magic -rcfile magicrc -noconsole -dnull tcl/extract_from_gds_for_sim.tcl $(PROJECT_NAME)
+	ls -al ../sim/spice/*.sim.spice
 
 lvs.report: $(PROJECT_NAME).lvs.spice ../src/project.v
 	@echo "============ Comparing layout '$(PROJECT_NAME)' with schematic '$(SCHEMATIC_NAME)' ============"

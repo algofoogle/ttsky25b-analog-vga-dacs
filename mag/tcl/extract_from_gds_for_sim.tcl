@@ -2,8 +2,7 @@
 # It is expected this will be called by mag/Makefile, which will change to the ../gds/
 # directory, but write the resulting SPICE to ../sim/spice/
 set project [lindex $argv $argc-1]
-gds read $project.gds
-cd ../sim/spice
+gds read ../gds/$project.gds
 flatten tt_um_flat
 load tt_um_flat
 select top cell
