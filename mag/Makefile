@@ -46,6 +46,16 @@ $(PROJECT_NAME).sim.spice: $(PROJECT_NAME).mag
 	magic -noconsole -dnull tcl/extract_for_sim.tcl $(PROJECT_NAME)
 	rm -f *.ext
 
+# Generate a SPICE netlist with PEX from a GDS layout. For example:
+#   make tt_um_algofoogle_vga_matrix_dac.from_gds.sim.spice
+# ...expects the GDS to be in the ../gds/ working directory,
+# and writes the output tt_um_algofoogle_vga_matrix_dac.from_gds.sim.spice
+# to ../sim/spice/
+sim_spice_from_gds: ../gds/$(PROJECT_NAME).gds
+    pushd ../gds
+    magic -noconsole -dnull ../mag/tcl/extract_from_gds_for_sim.tcl $(PROJECT_NAME)
+    popd
+
 lvs.report: $(PROJECT_NAME).lvs.spice ../src/project.v
 	@echo "============ Comparing layout '$(PROJECT_NAME)' with schematic '$(SCHEMATIC_NAME)' ============"
 	netgen -batch eval "set layout_name $(PROJECT_NAME) ; set schem_name $(SCHEMATIC_NAME) ; source tcl/lvs_netgen.tcl"

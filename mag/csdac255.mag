@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1762619127
+timestamp 1762665665
 << metal1 >>
 rect 7490 11384 7530 11424
 rect 7572 11384 7612 11424
@@ -332,7 +332,7 @@ timestamp 1762581680
 transform 1 0 -1412 0 -1 10084
 box 0 0 2840 574
 use array255x  XA
-timestamp 1762618382
+timestamp 1762665665
 transform 1 0 60 0 1 1046
 box -60 -1046 14768 8182
 use thermo15c  XThC
