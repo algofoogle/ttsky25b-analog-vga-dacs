@@ -152,17 +152,17 @@ vcca vcca 0 {vapwr}
 * Vin6 ui_in[6] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h6} {p6}
 * Vin7 ui_in[7] GND     PULSE   0.0  {vcc}   120n {rise} {fall} {h0} {p0}
 
-* --- MODE 2: BARS (div-2):
-* * 0_010_01_11 => VGA_MODE2BARS_DIV2_ALLPRIMARY
-*   0_010_01_01 => VGA_MODE2BARS_DIV2_GREENPRIMARY
-Vin0 ui_in[0] GND dc {vcc}
-Vin1 ui_in[1] GND dc 0.0
-Vin2 ui_in[2] GND dc {vcc}
-Vin3 ui_in[3] GND dc 0.0
-Vin4 ui_in[4] GND dc 0.0
-Vin5 ui_in[5] GND dc {vcc}
-Vin6 ui_in[6] GND dc 0.0
-Vin7 ui_in[7] GND dc 0.0
+* * --- MODE 2: BARS (div-2):
+* * * 0_010_01_11 => VGA_MODE2BARS_DIV2_ALLPRIMARY
+* *   0_010_01_01 => VGA_MODE2BARS_DIV2_GREENPRIMARY
+* Vin0 ui_in[0] GND dc {vcc}
+* Vin1 ui_in[1] GND dc 0.0
+* Vin2 ui_in[2] GND dc {vcc}
+* Vin3 ui_in[3] GND dc 0.0
+* Vin4 ui_in[4] GND dc 0.0
+* Vin5 ui_in[5] GND dc {vcc}
+* Vin6 ui_in[6] GND dc 0.0
+* Vin7 ui_in[7] GND dc 0.0
 
 * * --- MODE 5: XOR2:
 * Vin0 ui_in[0] GND dc 0.0
@@ -174,22 +174,18 @@ Vin7 ui_in[7] GND dc 0.0
 * Vin6 ui_in[6] GND dc {vcc}
 * Vin7 ui_in[7] GND dc 0.0
 
-* * --- MODE 1: RAMP, on all 3 channels:
-* Vin0 ui_in[0] GND dc {vcc}
-* Vin1 ui_in[1] GND dc {vcc}
-* Vin2 ui_in[2] GND dc 0.0
-* Vin3 ui_in[3] GND dc 0.0
-* Vin4 ui_in[4] GND dc {vcc}
-* Vin5 ui_in[5] GND dc 0.0
-* Vin6 ui_in[6] GND dc 0.0
-* Vin7 ui_in[7] GND dc 0.0
+* --- MODE 1: RAMP, on all 3 channels:
+Vin0 ui_in[0] GND dc {vcc}
+Vin1 ui_in[1] GND dc {vcc}
+Vin2 ui_in[2] GND dc 0.0
+Vin3 ui_in[3] GND dc 0.0
+Vin4 ui_in[4] GND dc {vcc}
+Vin5 ui_in[5] GND dc 0.0
+Vin6 ui_in[6] GND dc 0.0
+Vin7 ui_in[7] GND dc 0.0
 
-* * Configure Vbias to be L5 (~1.05V) => ~1.45mA at peak:
-* Vvbias0 uio_in[2] GND dc 0.0
-* Vvbias1 uio_in[3] GND dc {vcc}
-* Vvbias2 uio_in[4] GND dc 0.0
-
-* Configure Vbias to be L5 (active low, so {0,1.8,0}=0b101=5):
+* Configure Vbias to be L5 (active low, so {0,1.8,0}=0b101=5)...
+* ~1.05V => ~1.45mA at peak:
 Vvbias0 uio_in[2] GND dc 0.0
 Vvbias1 uio_in[3] GND dc {vcc}
 Vvbias2 uio_in[4] GND dc 0.0
