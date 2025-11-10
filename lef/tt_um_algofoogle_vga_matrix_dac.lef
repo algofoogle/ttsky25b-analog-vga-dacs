@@ -1,7 +1,3 @@
-VERSION 5.7 ;
-  NOWIREEXTENSIONATPIN ON ;
-  DIVIDERCHAR "/" ;
-  BUSBITCHARS "[]" ;
 MACRO tt_um_algofoogle_vga_matrix_dac
   CLASS BLOCK ;
   FOREIGN tt_um_algofoogle_vga_matrix_dac ;
@@ -476,24 +472,20 @@ MACRO tt_um_algofoogle_vga_matrix_dac
     USE POWER ;
     PORT
       LAYER met4 ;
-        RECT 1.000 5.000 4.600 220.760 ;
-    END
-    PORT
-      LAYER met4 ;
         RECT 120.620 5.000 122.220 221.000 ;
     END
     PORT
       LAYER met4 ;
         RECT 152.620 5.000 154.220 221.000 ;
     END
+    PORT
+      LAYER met4 ;
+        RECT 0.000 5.000 3.600 220.760 ;
+    END
   END VDPWR
   PIN VGND
     DIRECTION INOUT ;
     USE GROUND ;
-    PORT
-      LAYER met4 ;
-        RECT 5.600 5.000 9.200 220.760 ;
-    END
     PORT
       LAYER met4 ;
         RECT 123.920 5.000 125.520 221.000 ;
@@ -502,20 +494,24 @@ MACRO tt_um_algofoogle_vga_matrix_dac
       LAYER met4 ;
         RECT 155.920 5.000 157.520 221.000 ;
     END
+    PORT
+      LAYER met4 ;
+        RECT 4.000 5.000 7.600 220.760 ;
+    END
   END VGND
   OBS
       LAYER nwell ;
-        RECT 12.200 7.135 158.190 219.465 ;
+        RECT 9.500 7.135 158.190 219.465 ;
       LAYER li1 ;
-        RECT 12.590 7.135 158.000 219.465 ;
+        RECT 9.890 7.135 158.000 219.465 ;
       LAYER met1 ;
-        RECT 12.490 6.980 159.310 222.740 ;
+        RECT 9.790 6.980 159.310 222.740 ;
       LAYER met2 ;
-        RECT 12.200 7.035 159.280 224.560 ;
+        RECT 9.500 7.035 159.280 224.560 ;
       LAYER met3 ;
-        RECT 1.000 3.250 159.310 224.560 ;
+        RECT 0.000 1.395 159.310 224.560 ;
       LAYER met4 ;
-        RECT 5.600 224.360 30.270 224.760 ;
+        RECT 4.000 224.360 30.270 224.760 ;
         RECT 31.370 224.360 33.030 224.760 ;
         RECT 34.130 224.360 35.790 224.760 ;
         RECT 36.890 224.360 38.550 224.760 ;
@@ -559,23 +555,23 @@ MACRO tt_um_algofoogle_vga_matrix_dac
         RECT 141.770 224.360 143.430 224.760 ;
         RECT 144.530 224.360 146.190 224.760 ;
         RECT 147.290 224.360 159.085 224.760 ;
-        RECT 5.600 221.400 159.085 224.360 ;
-        RECT 5.600 221.160 120.220 221.400 ;
-        RECT 9.600 4.600 120.220 221.160 ;
+        RECT 4.000 221.400 159.085 224.360 ;
+        RECT 4.000 221.160 120.220 221.400 ;
+        RECT 8.000 4.600 120.220 221.160 ;
         RECT 122.620 4.600 123.520 221.400 ;
         RECT 125.920 4.600 152.220 221.400 ;
         RECT 154.620 4.600 155.520 221.400 ;
         RECT 157.920 4.600 159.085 221.400 ;
-        RECT 5.600 1.400 159.085 4.600 ;
-        RECT 5.600 1.000 16.170 1.400 ;
-        RECT 17.870 1.000 35.490 1.400 ;
-        RECT 37.190 1.000 54.810 1.400 ;
-        RECT 56.510 1.000 74.130 1.400 ;
-        RECT 75.830 1.000 93.450 1.400 ;
-        RECT 95.150 1.000 112.770 1.400 ;
-        RECT 114.470 1.000 132.090 1.400 ;
-        RECT 133.790 1.000 151.410 1.400 ;
-        RECT 153.110 1.000 159.085 1.400 ;
+        RECT 4.000 1.400 159.085 4.600 ;
+        RECT 4.000 0.000 16.170 1.400 ;
+        RECT 17.870 0.000 35.490 1.400 ;
+        RECT 37.190 0.000 54.810 1.400 ;
+        RECT 56.510 0.000 74.130 1.400 ;
+        RECT 75.830 0.000 93.450 1.400 ;
+        RECT 95.150 0.000 112.770 1.400 ;
+        RECT 114.470 0.000 132.090 1.400 ;
+        RECT 133.790 0.000 151.410 1.400 ;
+        RECT 153.110 0.000 159.085 1.400 ;
   END
 END tt_um_algofoogle_vga_matrix_dac
 END LIBRARY
