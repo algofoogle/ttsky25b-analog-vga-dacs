@@ -21,6 +21,8 @@ module controller_wrapper (
     output wire [2:0] Gbias,
     output wire [2:0] Bbias
 );
+    // Just used for Verilator debugging of whether 'registered' outptus are active:
+    wire registered /* verilator public */;
 
     // VGA signals
     wire hsync;
@@ -59,6 +61,7 @@ module controller_wrapper (
         .vsync      (vsync),
         .hblank     (uio_out[1]),
         .vblank     (uio_out[0]),
+        .registered (registered),
         .b          (rgb[23:16]),   // Positive colour channel bits. Primarily goes to DACs.
         .g          (rgb[15:8]),
         .r          (rgb[7:0])

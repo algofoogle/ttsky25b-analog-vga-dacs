@@ -1,6 +1,6 @@
 magic
 tech sky130A
-timestamp 1762581680
+timestamp 1762784779
 << nwell >>
 rect 0 0 837 287
 << pmos >>
@@ -271,7 +271,7 @@ rect 732 40 838 60
 rect 835 35 838 40
 rect 864 35 867 65
 use sky130_fd_pr__nfet_g5v0d10v5_VRH6W2  Mmirror
-timestamp 1762579227
+timestamp 1762784779
 transform 0 1 1161 -1 0 139
 box -139 -259 139 259
 << labels >>

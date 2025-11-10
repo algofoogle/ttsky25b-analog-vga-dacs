@@ -38,7 +38,7 @@ using namespace std;
 //#define USE_SPEAKER
 
 // #define USE_POWER_PINS //NOTE: This is automatically set in the Makefile, now.
-//#define INSPECT_INTERNAL //NOTE: This is automatically set in the Makefile, now.
+#define INSPECT_INTERNAL //NOTE: This is automatically set in the Makefile, now.
 #ifdef INSPECT_INTERNAL
   #include "Vcontroller_wrapper_controller_wrapper.h"       // Needed for accessing "verilator public" stuff in `controller_wrapper`
 #endif
@@ -1023,17 +1023,18 @@ int main(int argc, char **argv) {
       }
 
 #ifdef INSPECT_INTERNAL
-      s += " pX,Y=("
-        + to_string(fixed2double(TB->m_core->DESIGN->playerX)) + ", "
-        + to_string(fixed2double(TB->m_core->DESIGN->playerY)) + ") ";
-      s += " fX,Y=("
-        + to_string(fixed2double(TB->m_core->DESIGN->facingX)) + ", "
-        + to_string(fixed2double(TB->m_core->DESIGN->facingY)) + ") ";
-      s += " vX,Y=("
-        + to_string(fixed2double(TB->m_core->DESIGN->vplaneX)) + ", "
-        + to_string(fixed2double(TB->m_core->DESIGN->vplaneY)) + ") ";
-      s += " sf=" + to_string(gView.sf);
-      s += " sv=" + to_string(gView.sv);
+      // s += " pX,Y=("
+      //   + to_string(fixed2double(TB->m_core->DESIGN->playerX)) + ", "
+      //   + to_string(fixed2double(TB->m_core->DESIGN->playerY)) + ") ";
+      // s += " fX,Y=("
+      //   + to_string(fixed2double(TB->m_core->DESIGN->facingX)) + ", "
+      //   + to_string(fixed2double(TB->m_core->DESIGN->facingY)) + ") ";
+      // s += " vX,Y=("
+      //   + to_string(fixed2double(TB->m_core->DESIGN->vplaneX)) + ", "
+      //   + to_string(fixed2double(TB->m_core->DESIGN->vplaneY)) + ") ";
+      // s += " sf=" + to_string(gView.sf);
+      // s += " sv=" + to_string(gView.sv);
+      s += " reg_dac_outs=" + to_string(TB->m_core->DESIGN->registered);
 #endif//INSPECT_INTERNAL
       get_text_and_rect(renderer, 10, 10, s.c_str(), font, &text_texture, &rect);
       if (text_texture) {

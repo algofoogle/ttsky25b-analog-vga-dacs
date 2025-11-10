@@ -3,21 +3,22 @@
 module controller(
   input   wire        clk,
   input   wire        rst_n,
-  input   wire [7:0]  ui_in,             //NOTE: See https://github.com/algofoogle/journal/blob/master/0215-2024-08-21.md#explanation-of-digital-block-control-inputs
-  output  wire        hsync, vsync,      // Polarity determined by vga_sync module per vga_timing_mode.
-  output  wire        hblank, vblank,    // High during blanking.
-  output  wire [7:0]  r, g, b            // Positive colour channel bits. Primarily goes to DACs.
+  input   wire [7:0]  ui_in,          //NOTE: See https://github.com/algofoogle/journal/blob/master/0215-2024-08-21.md#explanation-of-digital-block-control-inputs
+  output  wire        hsync, vsync,   // Polarity determined by vga_sync module per vga_timing_mode.
+  output  wire        hblank, vblank, // High during blanking.
+  output  wire        registered,     // Whether registered outputs have been activated (mostly just for debug, not necessarily used externally).
+  output  wire [7:0]  r, g, b         // Positive colour channel bits. Primarily goes to DACs.
   // output  wire [7:0]  rn, gn, bn,        // INVERTED channel bits (for current steering).
   // output  wire        r7,g7,b7, r6,g6,b6 // Extra convenience outputs to wire up to digital outs on the north side of the macro.
 );
-  localparam MODE_PASS = 0;
-  localparam MODE_RAMP = 1;
-  localparam MODE_BARS = 2;
-  localparam MODE_3    = 3;
-  localparam MODE_XOR1 = 4;
-  localparam MODE_XOR2 = 5;
-  localparam MODE_XOR3 = 6;
-  localparam MODE_7    = 7;
+  localparam MODE_PASS = 0; // Pass ui_in directly to all 3 channels.
+  localparam MODE_RAMP = 1; // 
+  localparam MODE_BARS = 2; // Ramp, but with every over pixel inverted.
+  localparam MODE_RRAMP= 3; // Same as MODE_RAMP but with registered outputs to DACs.
+  localparam MODE_XOR1 = 4; // "Classic" XOR pattern.
+  localparam MODE_XOR2 = 5; // "New" XOR pattern.
+  localparam MODE_XOR3 = 6; // "New" XOR pattern, but static.
+  localparam MODE_RBARS= 7; // Same as MODE_BARS but with registered outputs to DACs.
 
   // Optional offset that some modes can apply to the line rendering logic:
   reg [7:0] voffset;
@@ -28,6 +29,16 @@ module controller(
 
   wire [9:0] h, v;
   wire hmax, vmax, visible; // Used to detect end of frame.
+
+  // UNregistered versions of internal R/G/B outputs:
+  wire [7:0] ur;
+  wire [7:0] ug;
+  wire [7:0] ub;
+
+  // REGSITERED versions of internal R/G/B outputs:
+  reg [7:0] rr;
+  reg [7:0] rg;
+  reg [7:0] rb;
 
   wire reset = ~rst_n;
 
@@ -63,9 +74,16 @@ module controller(
     end
   end
 
-  // These are for mode 0 (pass-thru):
+  // Activating 'Registered' output is done differently based on mode:
+  // MODE_RRAMP and MODE_RBARS are ALWAYS registered...
+  wire implicit_reg_mode = (mode == MODE_RRAMP) || (mode == MODE_RBARS);
+  // ...while modes *other than* MODE_RAMP and MODE_BARS are explicit...
+  wire explicit_reg_bit = (mode != MODE_RAMP && mode != MODE_BARS && mode_params[0]);
+  // (...and MODE_RAMP and MODE_BARS are never registered...)
+  assign registered = implicit_reg_mode || explicit_reg_bit;
+
+  // This is for mode 0 (pass-thru) specifically:
   wire gate             = mode_params[1];
-  wire registered       = mode_params[0];
 
   // These are for modes 1 (ramps) and 2 (bars):
   wire [1:0] divider    = mode_params[3:2];
@@ -116,10 +134,18 @@ module controller(
   // Direct outputs to DACs (with blanking):
   wire ungated_mode0 = (mode == MODE_PASS && !gate);
   wire enable_out = visible || ungated_mode0; //NOTE: mode 0 (PASS) can optionally disable gating.
-  assign {r,g,b} = enable_out ? {tr,tg,tb} : 0;
+  assign {ur,ug,ub} = enable_out ? {tr,tg,tb} : 0;
 
   // Intermediate video values (before blanking, etc):
   wire [7:0] tr, tg, tb;
+
+  // Registered copies of internal R/G/B outputs:
+  always @(posedge clk) begin
+    {rr,rg,rb} <= {ur,ug,ub};
+  end
+
+  // Select registered or unregistered outputs:
+  assign {r,g,b} = registered ? {rr,rg,rb} : {ur,ug,ub};
 
   // Last 16 pixels of the display are the 'gutter' for debug stuff:
   wire gutter = h[9:4] == 6'b100111;
@@ -135,6 +161,8 @@ module controller(
 
   wire [23:0] grey_pass = {ui_in, ui_in, ui_in};
 
+  wire [23:0] bars_pattern = ( mode_ramp_base ^ ( v<256 ? {24{ramphdiv[0]}} : {24{h[0]}} ) );
+
   // For now, just worry about unregistered outputs:
   assign {tr,tg,tb} =
     // In ungated mode 0, we pass inputs to outputs no matter what:
@@ -144,11 +172,12 @@ module controller(
     // Otherwise, just produce output based on whatever the mode generates:
     (mode == MODE_PASS) ? grey_pass :
     (mode == MODE_RAMP) ? mode_ramp_base :
-    (mode == MODE_BARS) ? ( mode_ramp_base ^ ( v<256 ? {24{ramphdiv[0]}} : {24{h[0]}} ) ) :
+    (mode == MODE_RRAMP)? mode_ramp_base : // Same as MODE_RAMP, but registered.
+    (mode == MODE_BARS) ? bars_pattern :
     (mode == MODE_XOR1) ? x1rgb :
     (mode == MODE_XOR2) ? x2rgb :
     (mode == MODE_XOR3) ? x3rgb :
-                          {8'b0, rampa, 8'b0};
+    /* MODE_RBARS */      bars_pattern; // Same as MODE_BARS, but registered.
 
   wire [23:0] x1rgb, x2rgb, x3rgb;
   mode_xor1 xor1(h, vv, t, x1rgb);
