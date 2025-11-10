@@ -1,7 +1,7 @@
 magic
 tech sky130A
 magscale 1 2
-timestamp 1762665665
+timestamp 1762784779
 << metal1 >>
 rect 7490 11384 7530 11424
 rect 7572 11384 7612 11424
@@ -324,23 +324,23 @@ rect -758 760 370 810
 rect -1732 460 202 700
 rect 13022 0 13422 400
 use vbias085  vbias085[0]
-timestamp 1762581680
+timestamp 1762784779
 transform 1 0 -1412 0 1 10084
 box 0 0 2840 574
 use vbias085  vbias085[1]
-timestamp 1762581680
+timestamp 1762784779
 transform 1 0 -1412 0 -1 10084
 box 0 0 2840 574
 use array255x  XA
-timestamp 1762665665
+timestamp 1762784779
 transform 1 0 60 0 1 1046
 box -60 -1046 14768 8182
 use thermo15c  XThC
-timestamp 1760335364
+timestamp 1762784779
 transform 1 0 3900 0 1 16934
 box -1016 -7430 7240 -5510
 use thermo15  XThR
-timestamp 1759723169
+timestamp 1762784779
 transform 1 0 -1114 0 1 8236
 box -1016 -7616 1090 640
 << labels >>
