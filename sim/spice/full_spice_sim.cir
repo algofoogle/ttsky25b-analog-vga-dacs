@@ -1,4 +1,4 @@
-Full circuit sim of extracted digital and analog blocks
+tt_um_algofoogle_vga_matrix_dac_parax with RGB ramp + 10R on each of DUT VDPWR and VGND
 
 *.lib /home/matt/work/asic-workshop/shuttle-2404/pdk/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 * .lib /home/anton/asic/ciel/sky130A/libs.tech/ngspice/sky130.lib.spice tt
@@ -76,10 +76,13 @@ xtt
 + uo_out[5]
 + uo_out[6]
 + uo_out[7]
-+ vcc
-+ 0
++ TTVDPWR
++ TTVGND
 + tt_um_algofoogle_vga_matrix_dac_parax
 
+* 10R impedance on power and gnd to DUT:
+Rvdpwr  TTVDPWR vcc 10
+Rvgnd   TTVGND  GND 10
 
 .param ipullup=500
 * .param vbiasimp=500
@@ -175,14 +178,24 @@ vcca vcca 0 {vapwr}
 * Vin7 ui_in[7] GND dc 0.0
 
 * --- MODE 1: RAMP, on all 3 channels:
-Vin0 ui_in[0] GND dc {vcc}
-Vin1 ui_in[1] GND dc {vcc}
-Vin2 ui_in[2] GND dc 0.0
-Vin3 ui_in[3] GND dc 0.0
-Vin4 ui_in[4] GND dc {vcc}
-Vin5 ui_in[5] GND dc 0.0
-Vin6 ui_in[6] GND dc 0.0
-Vin7 ui_in[7] GND dc 0.0
+Vin0 ui_in[0] GND dc {vcc}  ; 1 \___ primary 11 = all primary
+Vin1 ui_in[1] GND dc {vcc}  ; 1 /
+Vin2 ui_in[2] GND dc 0.0    ; 0 \___ divider 00 = div-1 (no div)
+Vin3 ui_in[3] GND dc 0.0    ; 0 /
+Vin4 ui_in[4] GND dc {vcc}  ; 1 \
+Vin5 ui_in[5] GND dc 0.0    ; 0  |== mode 001 = MODE_RAMP
+Vin6 ui_in[6] GND dc 0.0    ; 0 /
+Vin7 ui_in[7] GND dc 0.0    ; 0 ==== VGA mode 0 (normal 640x480@60Hz)
+
+* * --- MODE 1: RAMP, GREEN is primary (per pixel), blue is secondary (per line), red is fade (per frame).
+* Vin0 ui_in[0] GND dc {vcc}  ; 1 \___ primary 01 = GREEN primary
+* Vin1 ui_in[1] GND dc 0.0    ; 0 /
+* Vin2 ui_in[2] GND dc 0.0    ; 0 \___ divider 00 = div-1 (no div)
+* Vin3 ui_in[3] GND dc 0.0    ; 0 /
+* Vin4 ui_in[4] GND dc {vcc}  ; 1 \
+* Vin5 ui_in[5] GND dc 0.0    ; 0  |== mode 001 = MODE_RAMP
+* Vin6 ui_in[6] GND dc 0.0    ; 0 /
+* Vin7 ui_in[7] GND dc 0.0    ; 0 ==== VGA mode 0 (normal 640x480@60Hz)
 
 * Configure Vbias to be L5 (active low, so {0,1.8,0}=0b101=5)...
 * ~1.05V => ~1.45mA at peak:
@@ -353,5 +366,10 @@ Vreset  rst_n   GND PULSE {vcc}   0.0  10n    1n    1n  80n  34m
     * plot clk/9 rst_n 0       0       boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" ylimit 2.4 3.3
     
     * plot goutpin 0+( "xtt.controller_wrapper_0.G[7]"/2 + "xtt.controller_wrapper_0.G[6]"/4 + "xtt.controller_wrapper_0.G[5]"/8 + "xtt.controller_wrapper_0.G[4]"/16 + "xtt.controller_wrapper_0.G[3]"/32 + "xtt.controller_wrapper_0.G[2]"/64 + "xtt.controller_wrapper_0.G[1]"/128 + "xtt.controller_wrapper_0.G[0]"/256 )/1.8
+
+    * plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias "uo_out[7]" "uo_out[3]" xlimit 0 3.4us ylimit 0 3.3
+    * plot clk/9 rst_n routpin goutpin boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias   "uo_out[7]" "uo_out[3]" ylimit 0 3.3
+    * plot clk/9 rst_n 0 0 boutpin rvbiaspin xtt.dac_green.vbias xtt.dac_blue.vbias+1.5    "xtt.controller_wrapper_0.B[0]"/1.8/10+2.1 "xtt.controller_wrapper_0.B[1]"/1.8/10+2.1 "xtt.controller_wrapper_0.B[2]"/1.8/10+2.1 "xtt.controller_wrapper_0.B[3]"/1.8/10+2.1 "xtt.controller_wrapper_0.B[4]"/1.8/10+2.1 "xtt.controller_wrapper_0.B[5]"/1.8/10+2.1 "xtt.controller_wrapper_0.B[6]"/1.8/10+2.1 "xtt.controller_wrapper_0.B[7]"/1.8/10+2.1      ylimit 2.0 3.3
+
 .endc
 .end
